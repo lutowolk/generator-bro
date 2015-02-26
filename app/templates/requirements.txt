@@ -4,7 +4,7 @@ argparse==1.2.1
 django-flatblocks==0.8
 funcy==1.1
 gunicorn==19.0.0
-psycopg2==2.5.3
+<%= pyDbDrive %>
 pystache==0.5.4
 pytils==0.3
 pytz==2014.7

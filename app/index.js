@@ -4,7 +4,37 @@ var randomString = require('randomstring');
 var chalk = require('chalk');
 var yosay = require('yosay');
 
+// constant
+var PythonDbDrive = {
+  postgresql_psycopg2: 'psycopg2',  // jshint ignore:line
+  mysql: 'mysqlclient',
+  sqlite3: '',
+  oracle: 'cx_Oracle'
+};
+
 module.exports = yeoman.generators.Base.extend({
+  constructor: function () {
+    yeoman.Base.apply(this, arguments);
+
+    this.argument('projectName', {
+      type: String,
+      required: false
+    });
+    this.argument('dbType', {
+      description: 'Available database backends: ' + this._.keys(PythonDbDrive).join(', '),
+      type: String,
+      required: false
+    });
+    this.argument('dbUser', {
+      type: String,
+      required: false
+    });
+    this.argument('dbPass', {
+      type: String,
+      required: false
+    });
+  },
+
   initializing: function () {
     this.pkg = require('../package.json');
   },
@@ -25,7 +55,7 @@ module.exports = yeoman.generators.Base.extend({
       name: 'dbType',
       message: 'Database type',
       type: 'list',
-      choices: ['postgres_psycopg2', 'mysql', 'sqlite3', 'oracle'],
+      choices: this._.keys(PythonDbDrive),
       default: 0
     }, {
       name: 'dbUser',
@@ -37,11 +67,20 @@ module.exports = yeoman.generators.Base.extend({
       default: ''
     }];
 
-    this.prompt(prompts, function (props) {
-      this.projectName = props.projectName;
-      this.dbType = props.dbType;
-      this.dbUser = props.dbUser;
-      this.dbPass = props.dbPass;
+    var newPrompts = [];
+
+    var self = this;
+
+    this._.each(prompts, function(p){
+      if (!self[p.name]) {
+        newPrompts.push(p);
+      }
+    });
+
+    this.prompt(newPrompts, function (props) {
+      self._.each(self._.keys(props), function(key){
+        self[key] = props[key];
+      });
 
       done();
     }.bind(this));
@@ -77,7 +116,7 @@ module.exports = yeoman.generators.Base.extend({
 
         // server.config files
 
-        this.fs.copy(
+        this.copy(
           'config/init.py',
           this.projectName + '/server/config/settings/__init__.py'
         );
@@ -93,11 +132,11 @@ module.exports = yeoman.generators.Base.extend({
           'config/_local.py',
           this.projectName + '/server/config/settings/local.py'
         );
-        this.fs.copy(
+        this.copy(
           'init.py',
           this.projectName + '/server/config/__init__.py'
         );
-        this.fs.copy(
+        this.copy(
           'config/urls.py',
           this.projectName + '/server/config/urls.py'
         );
@@ -108,17 +147,21 @@ module.exports = yeoman.generators.Base.extend({
 
         // server files
 
-        this.fs.copy(
-          this.templatePath('init.py'),
-          this.destinationPath(this.projectName + '/server/__init__.py')
+        this.copy(
+          'init.py',
+          this.projectName + '/server/__init__.py'
         );
-        this.fs.copy(
-          this.templatePath('manage.py'),
-          this.destinationPath(this.projectName + '/server/manage.py')
+        this.copy(
+          'manage.py',
+          this.projectName + '/server/manage.py'
         );
-        this.fs.copy(
-          this.templatePath('requirements.txt'),
-          this.destinationPath(this.projectName + '/server/requirements.txt')
+
+        // set database python driver
+        this.pyDbDrive = PythonDbDrive[this.dbType];
+
+        this.copy(
+          'requirements.txt',
+          this.projectName + '/server/requirements.txt'
         );
       }
   },
