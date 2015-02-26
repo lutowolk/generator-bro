@@ -1,0 +1,59 @@
+{
+  "name": "{appName}",
+  "files": ["__init__"],
+  "dirs": [
+    {
+      "name": "models",
+      "files": [
+        "{appName}",
+        "__init__"
+      ],
+      "dirs": [
+        {
+          "name": "mixins",
+          "files": ["__init__"]
+        }
+      ]
+    },
+    {
+      "name": "views",
+      "files": ["__init__"],
+      "dirs": [
+        {
+          "name": "mixins",
+          "files": ["__init__"]
+        }
+      ]
+    },
+    {
+      "name": "admin",
+      "files": ["__init__"],
+      "dirs": [
+        {
+          "name": "mixins",
+          "files": ["__init__"]
+        }
+      ]
+    },
+    {
+      "name": "tests",
+      "files": ["__init__"],
+      "dirs": [
+        {
+          "name": "models",
+          "files": [
+            "test_{appName}",
+            "__init__"
+          ]
+        },
+        {
+          "name": "views",
+          "files": [
+            "test_{appName}",
+            "__init__"
+          ]
+        }
+      ]
+    }
+  ]
+}
