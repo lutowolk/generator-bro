@@ -1,56 +1,72 @@
 {
   "name": "{appName}",
-  "files": ["__init__"],
+  "files": [
+    ["__init__.py", "init.py"]
+  ],
   "dirs": [
     {
       "name": "models",
       "files": [
-        "{appName}",
-        "__init__"
+        ["{appName}.py", "_models.py"],
+        ["__init__.py", "init.py"]
       ],
       "dirs": [
         {
           "name": "mixins",
-          "files": ["__init__"]
+          "files": [
+            ["__init__.py", "init.py"]
+          ]
         }
       ]
     },
     {
       "name": "views",
-      "files": ["__init__"],
+      "files": [
+        ["{appName}.py", "_views.py"],
+        ["__init__.py", "init.py"]
+      ],
       "dirs": [
         {
           "name": "mixins",
-          "files": ["__init__"]
+          "files": [
+            ["__init__.py", "init.py"]
+          ]
         }
       ]
     },
     {
       "name": "admin",
-      "files": ["__init__"],
+      "files": [
+        ["{appName}.py", "_admin.py"],
+        ["__init__.py", "init.py"]
+      ],
       "dirs": [
         {
           "name": "mixins",
-          "files": ["__init__"]
+          "files": [
+            ["__init__.py", "init.py"]
+          ]
         }
       ]
     },
     {
       "name": "tests",
-      "files": ["__init__"],
+      "files": [
+        ["__init__.py", "init.py"]
+      ],
       "dirs": [
         {
           "name": "models",
           "files": [
-            "test_{appName}",
-            "__init__"
+            ["test_{appName}.py", "_test_models.py"],
+            ["__init__.py", "init.py"]
           ]
         },
         {
           "name": "views",
           "files": [
-            "test_{appName}",
-            "__init__"
+            ["test_{appName}.py", "_test_views.py"],
+            ["__init__.py", "init.py"]
           ]
         }
       ]

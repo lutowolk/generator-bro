@@ -26,7 +26,7 @@ module.exports = yeoman.generators.Base.extend({
       //////////////////////////////
 
       /**
-       * Recursion function for creating directory structure by
+       * Recursion function for creating directory and file structure by
        * structure map json.
        *
        * @param sj {Object}
@@ -35,13 +35,29 @@ module.exports = yeoman.generators.Base.extend({
       function generateFileStruct(sj, path) {
         path = path || './';
 
-        var dirName = path + _(sj.name, {appName: self.appname});
+        var _ = self._;
+
+        var dirName = path + f(sj.name, {appName: self.appname});
 
         self.dest.mkdir(dirName);
 
+        if (sj.files) {
+          _.each(sj.files, function(fi) {
+            // todo check: expected list of two elements
+            var dest = dirName + '/' + f(_.first(fi), {appName: self.appname});
+            var tpl = _.last(fi);  // src template name
+
+            if (_.first(tpl) === '_') {
+              self.template(tpl, dest);
+            } else {
+              self.copy(tpl, dest);
+            }
+          });
+        }
+
         if (sj.dirs) {
-          self._.each(sj.dirs, function(d) {
-            generateFileStruct(d, dirName + '/');
+          _.each(sj.dirs, function(d) {
+            generateFileStruct(d, (dirName + '/'));
           });
         }
       }
@@ -51,14 +67,14 @@ module.exports = yeoman.generators.Base.extend({
        *
        * Usage:
        *
-       * _('I'm {age} years old', {age: 10})
+       * f('I'm {age} years old', {age: 10})
        *
        * @param tpl {String}
        * @param opts {Object}
        * @returns {String}
        * @private
        */
-      function _(tpl, opts) {
+      function f(tpl, opts) {
         self._.each(self._.keys(opts), function (opt){
           tpl = tpl.replace('{'+opt+'}', opts[opt]);
         }); return tpl;
