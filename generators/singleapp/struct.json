@@ -1,14 +1,22 @@
 {
   "name": "{appName}",
   "files": [
+    ["urls.py", "_urls.py"],
     ["__init__.py", "init.py"]
   ],
   "dirs": [
     {
+      "name": "factories",
+      "files": [
+        ["{appName}.py", "_factory.py"],
+        ["__init__.py", "_item_init.py"]
+      ]
+    },
+    {
       "name": "models",
       "files": [
         ["{appName}.py", "_models.py"],
-        ["__init__.py", "init.py"]
+        ["__init__.py", "_item_init.py"]
       ],
       "dirs": [
         {
@@ -23,7 +31,7 @@
       "name": "views",
       "files": [
         ["{appName}.py", "_views.py"],
-        ["__init__.py", "init.py"]
+        ["__init__.py", "_item_init.py"]
       ],
       "dirs": [
         {
@@ -38,7 +46,7 @@
       "name": "admin",
       "files": [
         ["{appName}.py", "_admin.py"],
-        ["__init__.py", "init.py"]
+        ["__init__.py", "_admin_init.py"]
       ],
       "dirs": [
         {
