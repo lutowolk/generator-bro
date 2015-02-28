@@ -5,6 +5,11 @@ module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments);
 
+    // set interpolate symbols {{ foo }}
+    this._.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+    this._.templateSettings.escape = /{{-([\s\S]+?)}}/g;
+    this._.templateSettings.evaluate = /{{([\s\S]+?)}}/g;
+
     this.argument('appname', {
       type: String,
       required: false
@@ -47,10 +52,15 @@ module.exports = yeoman.generators.Base.extend({
             var dest = dirName + '/' + f(_.first(fi), {appName: self.appname});
             var tpl = _.last(fi);  // src template name
 
+            // set curDir value for templates
+            self.curDir = _.last(dirName.split('/'));
+
             if (_.first(tpl) === '_') {
-              self.template(tpl, dest);
+              self.fs.copyTpl(
+                self.templatePath(tpl), self.destinationPath(dest), self);
             } else {
-              self.copy(tpl, dest);
+              self.fs.copy(
+                self.templatePath(tpl), self.destinationPath(dest));
             }
           });
         }

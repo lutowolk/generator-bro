@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from factory import fuzzy, DjangoModelFactory
-from models import <%= appname %>
+from apps.{{appname}}.models import {{_.capitalize(appname)}}
 
 
-class <%= appname %>Factory(DjangoModelFactory):
+class {{_.capitalize(appname)}}Factory(DjangoModelFactory):
     name = fuzzy.FuzzyText(length=50)
     slug = fuzzy.FuzzyText(length=20)
 
     class Meta:
-        model = <%= appname %>
+        model = {{_.capitalize(appname)}}

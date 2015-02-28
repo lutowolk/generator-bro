@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.test import TestCase
+from apps.{{appname}}.factories import {{_.capitalize(appname)}}Factory
 
 
-class <%= appname %>TestCase(TestCase):
+class {{_.capitalize(appname)}}ModelTestCase(TestCase):
     def setUp(self):
-        pass
+        self.{{appname}} = {{_.capitalize(appname)}}Factory()
 
     def test_ok(self):
-        pass
-
-    def test_fail(self):
-        pass
+        self.assertTrue(self.{{appname}}.__unicode__())

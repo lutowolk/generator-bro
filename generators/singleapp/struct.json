@@ -46,7 +46,7 @@
       "name": "admin",
       "files": [
         ["{appName}.py", "_admin.py"],
-        ["__init__.py", "_admin_init.py"]
+        ["__init__.py", "_item_init.py"]
       ],
       "dirs": [
         {

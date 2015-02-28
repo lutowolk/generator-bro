@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from django.views.generic import ListView, DetailView
 
 
-class <%= appname %>ListView(ListView):
-    model = <%= appname %>
+class {{_.capitalize(appname)}}ListView(ListView):
+    model = {{_.capitalize(appname)}}
 
     def get_queryset(self):
         """Override this method or remove"""
@@ -12,12 +12,13 @@ class <%= appname %>ListView(ListView):
 
     def get_context_data(self, **kwargs):
         """Override this method or remove"""
-        context = super(<%= appname %>ListView, self).get_context_data(**kwargs)
+        context = super({{_.capitalize(appname)}}ListView, self)\
+            .get_context_data(**kwargs)
         return context
 
 
-class <%= appname %>DetailView(DetailView):
-    model = <%= appname %>
+class {{_.capitalize(appname)}}DetailView(DetailView):
+    model = {{_.capitalize(appname)}}
 
     def get_queryset(self):
         """Override this method or remove"""
@@ -25,5 +26,5 @@ class <%= appname %>DetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         """Override this method or remove"""
-        context = super(<%= appname %>DetailView, self).get_context_data(**kwargs)
+        context = super({{_.capitalize(appname)}}DetailView, self).get_context_data(**kwargs)
         return context
