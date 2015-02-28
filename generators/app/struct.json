@@ -1,0 +1,32 @@
+{
+  "name": "{appName}",
+  "dirs": [
+    {
+      "name": "client"
+    },
+    {
+      "name": "server",
+      "files": [],
+      "dirs": [
+        {
+          "name": "contrib"
+        },
+        {
+          "name": "libs"
+        },
+        {
+          "name": "apps"
+        },
+        {
+          "name": "templates"
+        },
+        {
+          "name": "config",
+          "dirs": {
+            "name": "settings"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -16,7 +16,7 @@ module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments);
 
-    this.argument('projectName', {
+    this.argument('appName', {
       type: String,
       required: false
     });
@@ -48,7 +48,7 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      name: 'projectName',
+      name: 'appName',
       message: 'Name of the project:',
       default: 'bro-project'
     }, {
@@ -88,6 +88,9 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
       appDirectories: function () {
+        var structJSON = this.src.readJSON('../struct.json');
+        generateFileStruct(structJSON, './', this);
+
         // Root folder.
         this.mkdir(this.projectName);
 

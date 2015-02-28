@@ -27,7 +27,8 @@
     "yeoman-generator": "^0.18.0",
     "chalk": "^0.5.0",
     "yosay": "^0.3.0",
-    "randomstring": "*"
+    "randomstring": "^1.0.3",
+    "lodash": "^3.3.1"
   },
   "devDependencies": {
     "mocha": "*"
