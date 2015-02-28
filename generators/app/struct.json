@@ -42,14 +42,14 @@
                 ["settings.py", "server/config/_settings.py"],
                 ["__local.py", "server/config/_local.py"],
                 ["__init__.py", "server/config/init.py"],
-                ["local.py", "server/config/_local.py"],
-                ["wsgi.py", "server/config/_wsgi.py"],
-                ["urls.py", "server/config/urls.py"]
+                ["local.py", "server/config/_local.py"]
               ]
             }
           ],
           "files": [
-            ["__init__.py", "server/init.py"]
+            ["__init__.py", "server/init.py"],
+            ["wsgi.py", "server/config/_wsgi.py"],
+            ["urls.py", "server/config/urls.py"]
           ]
         }
       ]
