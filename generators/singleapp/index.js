@@ -23,7 +23,8 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     appDirectories: function () {
-      var structJSON = this.src.readJSON('../struct.json');
+      var structJSON = this.fs.readJSON(
+        this.templatePath('../struct.json'));
       generateFileStruct(structJSON, './', this);
     }
   }

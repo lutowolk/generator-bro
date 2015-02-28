@@ -1,4 +1,6 @@
 'use strict';
+
+var generateFileStruct = require('../../utils/generateFilesStruct').generateFileStruct;
 var yeoman = require('yeoman-generator');
 var randomString = require('randomstring');
 var chalk = require('chalk');
@@ -16,22 +18,23 @@ module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments);
 
-    this.argument('appName', {
-      type: String,
-      required: false
+    // set interpolate symbols {{ foo }}
+    this._.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+    this._.templateSettings.escape = /{{-([\s\S]+?)}}/g;
+    this._.templateSettings.evaluate = /{{([\s\S]+?)}}/g;
+
+    this.argument('appname', {
+      type: String, required: false
     });
     this.argument('dbType', {
       description: 'Available database backends: ' + this._.keys(PythonDbDrive).join(', '),
-      type: String,
-      required: false
+      type: String, required: false
     });
     this.argument('dbUser', {
-      type: String,
-      required: false
+      type: String, required: false
     });
     this.argument('dbPass', {
-      type: String,
-      required: false
+      type: String, required: false
     });
   },
 
@@ -48,7 +51,7 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      name: 'appName',
+      name: 'appname',
       message: 'Name of the project:',
       default: 'bro-project'
     }, {
@@ -88,84 +91,16 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
       appDirectories: function () {
-        var structJSON = this.src.readJSON('../struct.json');
-        generateFileStruct(structJSON, './', this);
+        var structJSON = this.fs.readJSON(
+          this.templatePath('../struct.json'));
 
-        // Root folder.
-        this.mkdir(this.projectName);
-
-        // Client folder.
-        this.mkdir(this.projectName + '/client');
-
-        // Server folder.
-        this.mkdir(this.projectName + '/server');
-
-        // Contrib and libs.
-        this.mkdir(this.projectName + '/server/contrib');
-        this.mkdir(this.projectName + '/server/libs');
-        this.mkdir(this.projectName + '/server/apps');
-
-        // Templates folder.
-        this.mkdir(this.projectName + '/server/templates');
-
-        // Static files folder.
-        this.mkdir(this.projectName + '/server/config');
-        this.mkdir(this.projectName + '/server/config/settings');
-      },
-
-      appFiles: function () {
         // generate secret for settings.py
         this.secret = randomString.generate(48);
 
-        // server.config files
-
-        this.copy(
-          'config/init.py',
-          this.projectName + '/server/config/settings/__init__.py'
-        );
-        this.template(
-          'config/_settings.py',
-          this.projectName + '/server/config/settings/settings.py'
-        );
-        this.template(
-          'config/_local.py',
-          this.projectName + '/server/config/settings/__local.py'
-        );
-        this.template(
-          'config/_local.py',
-          this.projectName + '/server/config/settings/local.py'
-        );
-        this.copy(
-          'init.py',
-          this.projectName + '/server/config/__init__.py'
-        );
-        this.copy(
-          'config/urls.py',
-          this.projectName + '/server/config/urls.py'
-        );
-        this.template(
-          'config/_wsgi.py',
-          this.projectName + '/server/config/wsgi.py'
-        );
-
-        // server files
-
-        this.copy(
-          'init.py',
-          this.projectName + '/server/__init__.py'
-        );
-        this.copy(
-          'manage.py',
-          this.projectName + '/server/manage.py'
-        );
-
-        // set database python driver
+        // python db driver
         this.pyDbDrive = PythonDbDrive[this.dbType];
 
-        this.copy(
-          'requirements.txt',
-          this.projectName + '/server/requirements.txt'
-        );
+        generateFileStruct(structJSON, './', this);
       }
   },
 

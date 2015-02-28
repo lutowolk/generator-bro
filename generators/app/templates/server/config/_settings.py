@@ -6,12 +6,14 @@ import logging
 # Secret key
 # This is used to provide cryptographic signing, and should be set
 # to a unique, unpredictable value.
-SECRET_KEY = '<%= secret %>'
+SECRET_KEY = '{{ secret }}'
 
 ANONYMOUS_USER_ID = -1
 SITE_ID = 1
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 ##################################################################
 # Debug settings

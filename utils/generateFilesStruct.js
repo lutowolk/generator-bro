@@ -30,7 +30,9 @@ function generateFileStruct(sj, path, context) {
       // set curDir value for templates
       context.curDir = _.last(dirName.split('/'));
 
-      if (_.first(tpl) === '_') {
+      var tplName = _.last(tpl.split('/'));
+
+      if (_.first(tplName) === '_') {
         context.fs.copyTpl(
           context.templatePath(tpl), context.destinationPath(dest), context);
       } else {

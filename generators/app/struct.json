@@ -6,25 +6,51 @@
     },
     {
       "name": "server",
-      "files": [],
+      "files": [
+        ["requirements.txt", "server/_requirements.txt"],
+        ["__init__.py", "server/init.py"],
+        ["manage.py", "server/manage.py"]
+      ],
       "dirs": [
         {
-          "name": "contrib"
+          "name": "contrib",
+          "files": [
+            ["__init__.py", "server/init.py"]
+          ]
         },
         {
-          "name": "libs"
+          "name": "libs",
+          "files": [
+            ["__init__.py", "server/init.py"]
+          ]
         },
         {
-          "name": "apps"
+          "name": "apps",
+          "files": [
+            ["__init__.py", "server/init.py"]
+          ]
         },
         {
           "name": "templates"
         },
         {
           "name": "config",
-          "dirs": {
-            "name": "settings"
-          }
+          "dirs": [
+            {
+              "name": "settings",
+              "files": [
+                ["settings.py", "server/config/_settings.py"],
+                ["__local.py", "server/config/_local.py"],
+                ["__init__.py", "server/config/init.py"],
+                ["local.py", "server/config/_local.py"],
+                ["wsgi.py", "server/config/_wsgi.py"],
+                ["urls.py", "server/config/urls.py"]
+              ]
+            }
+          ],
+          "files": [
+            ["__init__.py", "server/init.py"]
+          ]
         }
       ]
     }
