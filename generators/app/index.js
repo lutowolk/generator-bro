@@ -18,6 +18,10 @@ module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments);
 
+    // get root dir of this generator for yo-rc
+    this.gRootDir = this._.first(this.options.resolved
+      .split(this.config.name)) + this.config.name;
+
     // set interpolate symbols {{ foo }}
     this._.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
     this._.templateSettings.escape = /{{-([\s\S]+?)}}/g;
