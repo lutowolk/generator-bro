@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from termcolor import colored
+from os.path import basename
 from funcy import first
 import meta
 import ast
@@ -51,7 +53,8 @@ def add_url_to_patterns(options):
     with open(options.path, 'w') as mw:
         mw.write(backward_source_code)
 
-    print "File update successfully"
+    print colored("File {file_name} update successfully"
+                  .format(file_name=basename(options.path)), 'green')
 
 
 def add_str_to_tuple(options):
@@ -82,4 +85,5 @@ def add_str_to_tuple(options):
     with open(options.path, 'w') as mw:
         mw.write(backward_source_code)
 
-    print "File update successfully"
+    print colored("File {file_name} update successfully"
+                  .format(file_name=basename(options.path)), 'green')
