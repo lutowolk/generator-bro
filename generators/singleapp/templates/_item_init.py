@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from apps.{{appname}}.{{curDir}} import {{_.capitalize(appname)}}
+from apps.{{appname}}.{{curDir}}.{{appname}} import *

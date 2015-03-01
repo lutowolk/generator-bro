@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.views.generic import ListView, DetailView
+from apps.{{appname}}.models import {{_.capitalize(appname)}}
 
 
 class {{_.capitalize(appname)}}ListView(ListView):
