@@ -10,42 +10,55 @@ module.exports = {
  * Recursion function for creating directory and file structure by
  * structure map json.
  *
- * @param sj {Object}
+ * @param sj {Array}
  * @param path {String}
  * @param context {Object}
  */
 function generateFileStruct(sj, path, context) {
+
   path = path || './';
 
-  var dirName = path + f(sj.name, {appName: context.appname});
-
-  context.dest.mkdir(dirName);
-
-  if (sj.files) {
-    _.each(sj.files, function(fi) {
-      // todo check: expected list of two elements
-      var dest = dirName + '/' + f(_.first(fi), {appName: context.appname});
-      var tpl = _.last(fi);  // src template name
-
-      // set curDir value for templates
-      context.curDir = _.last(dirName.split('/'));
-
-      var tplName = _.last(tpl.split('/'));
-
-      if (_.first(tplName) === '_') {
-        context.fs.copyTpl(
-          context.templatePath(tpl), context.destinationPath(dest), context);
-      } else {
-        context.fs.copy(
-          context.templatePath(tpl), context.destinationPath(dest));
-      }
+  if (sj) {
+    _.each(sj, function(d) {
+      _gfs(d, path, context);
     });
   }
 
-  if (sj.dirs) {
-    _.each(sj.dirs, function(d) {
-      generateFileStruct(d, (dirName + '/'), context);
-    });
+  /**
+   * Private reqursion function
+   * @private
+   */
+  function _gfs(s, p, c) {
+    var dirName = p + f(s.name, {appName: c.appname});
+
+    c.dest.mkdir(dirName);
+
+    if (s.files) {
+      _.each(s.files, function(fi) {
+        // todo check: expected list of two elements
+        var dest = dirName + '/' + f(_.first(fi), {appName: c.appname});
+        var tpl = _.last(fi);  // src template name
+
+        // set curDir value for templates
+        c.curDir = _.last(dirName.split('/'));
+
+        var tplName = _.last(tpl.split('/'));
+
+        if (_.first(tplName) === '_') {
+          c.fs.copyTpl(
+            c.templatePath(tpl), c.destinationPath(dest), c);
+        } else {
+          c.fs.copy(
+            c.templatePath(tpl), c.destinationPath(dest));
+        }
+      });
+    }
+
+    if (s.dirs) {
+      _.each(s.dirs, function(d) {
+        _gfs(d, (dirName + '/'), c);
+      });
+    }
   }
 }
 
