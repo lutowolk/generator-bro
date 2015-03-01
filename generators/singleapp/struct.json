@@ -1,83 +1,97 @@
-{
-  "name": "{appName}",
-  "files": [
-    ["urls.py", "_urls.py"],
-    ["__init__.py", "init.py"]
-  ],
-  "dirs": [
-    {
-      "name": "factories",
-      "files": [
-        ["{appName}.py", "_factory.py"],
-        ["__init__.py", "_item_init.py"]
-      ]
-    },
-    {
-      "name": "models",
-      "files": [
-        ["{appName}.py", "_models.py"],
-        ["__init__.py", "_item_init.py"]
-      ],
-      "dirs": [
-        {
-          "name": "mixins",
-          "files": [
-            ["__init__.py", "init.py"]
-          ]
-        }
-      ]
-    },
-    {
-      "name": "views",
-      "files": [
-        ["{appName}.py", "_views.py"],
-        ["__init__.py", "_item_init.py"]
-      ],
-      "dirs": [
-        {
-          "name": "mixins",
-          "files": [
-            ["__init__.py", "init.py"]
-          ]
-        }
-      ]
-    },
-    {
-      "name": "admin",
-      "files": [
-        ["{appName}.py", "_admin.py"],
-        ["__init__.py", "_item_init.py"]
-      ],
-      "dirs": [
-        {
-          "name": "mixins",
-          "files": [
-            ["__init__.py", "init.py"]
-          ]
-        }
-      ]
-    },
-    {
-      "name": "tests",
-      "files": [
-        ["__init__.py", "init.py"]
-      ],
-      "dirs": [
-        {
-          "name": "models",
-          "files": [
-            ["test_{appName}.py", "_test_models.py"],
-            ["__init__.py", "init.py"]
-          ]
-        },
-        {
-          "name": "views",
-          "files": [
-            ["test_{appName}.py", "_test_views.py"],
-            ["__init__.py", "init.py"]
-          ]
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "name": "server/apps/{appName}",
+    "files": [
+      ["urls.py", "_urls.py"],
+      ["__init__.py", "init.py"]
+    ],
+    "dirs": [
+      {
+        "name": "factories",
+        "files": [
+          ["{appName}.py", "_factory.py"],
+          ["__init__.py", "_item_init.py"]
+        ]
+      },
+      {
+        "name": "models",
+        "files": [
+          ["{appName}.py", "_models.py"],
+          ["__init__.py", "_item_init.py"]
+        ],
+        "dirs": [
+          {
+            "name": "mixins",
+            "files": [
+              ["__init__.py", "init.py"]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "views",
+        "files": [
+          ["{appName}.py", "_views.py"],
+          ["__init__.py", "_item_init.py"]
+        ],
+        "dirs": [
+          {
+            "name": "mixins",
+            "files": [
+              ["__init__.py", "init.py"]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "admin",
+        "files": [
+          ["{appName}.py", "_admin.py"],
+          ["__init__.py", "_item_init.py"]
+        ],
+        "dirs": [
+          {
+            "name": "mixins",
+            "files": [
+              ["__init__.py", "init.py"]
+            ]
+          }
+        ]
+      },
+      {
+        "name": "tests",
+        "files": [
+          ["__init__.py", "init.py"]
+        ],
+        "dirs": [
+          {
+            "name": "models",
+            "files": [
+              ["test_{appName}.py", "_test_models.py"],
+              ["__init__.py", "init.py"]
+            ]
+          },
+          {
+            "name": "views",
+            "files": [
+              ["test_{appName}.py", "_test_views.py"],
+              ["__init__.py", "init.py"]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "server/templates",
+    "dirs": [
+      {
+        "name": "{appName}",
+        "files": [
+          ["{appName}_detail.html", "templates/_detail.html"],
+          ["{appName}_list.html", "templates/_list.html"]
+        ]
+      }
+    ]
+  }
+]

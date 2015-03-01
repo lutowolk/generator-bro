@@ -1,58 +1,70 @@
-{
-  "name": "{appName}",
-  "dirs": [
-    {
-      "name": "client"
-    },
-    {
-      "name": "server",
-      "files": [
-        ["requirements.txt", "server/_requirements.txt"],
-        ["__init__.py", "server/init.py"],
-        ["manage.py", "server/manage.py"]
-      ],
-      "dirs": [
-        {
-          "name": "contrib",
-          "files": [
-            ["__init__.py", "server/init.py"]
-          ]
-        },
-        {
-          "name": "libs",
-          "files": [
-            ["__init__.py", "server/init.py"]
-          ]
-        },
-        {
-          "name": "apps",
-          "files": [
-            ["__init__.py", "server/init.py"]
-          ]
-        },
-        {
-          "name": "templates"
-        },
-        {
-          "name": "config",
-          "dirs": [
-            {
-              "name": "settings",
-              "files": [
-                ["settings.py", "server/config/_settings.py"],
-                ["__local.py", "server/config/_local.py"],
-                ["__init__.py", "server/config/init.py"],
-                ["local.py", "server/config/_local.py"]
-              ]
-            }
-          ],
-          "files": [
-            ["__init__.py", "server/init.py"],
-            ["wsgi.py", "server/config/_wsgi.py"],
-            ["urls.py", "server/config/urls.py"]
-          ]
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "name": "{appName}",
+    "files": [
+      [".yo-rc.json", "_yo-rc.json"]
+    ],
+    "dirs": [
+      {
+        "name": "client"
+      },
+      {
+        "name": "server",
+        "files": [
+          ["requirements.txt", "server/_requirements.txt"],
+          ["__init__.py", "server/init.py"],
+          ["manage.py", "server/manage.py"]
+        ],
+        "dirs": [
+          {
+            "name": "contrib",
+            "files": [
+              ["__init__.py", "server/init.py"]
+            ]
+          },
+          {
+            "name": "libs",
+            "files": [
+              ["__init__.py", "server/init.py"]
+            ]
+          },
+          {
+            "name": "apps",
+            "files": [
+              ["__init__.py", "server/init.py"]
+            ]
+          },
+          {
+            "name": "templates"
+          },
+          {
+            "name": "config",
+            "dirs": [
+              {
+                "name": "settings",
+                "files": [
+                  ["installed_apps.py", "server/config/installed_apps.py"],
+                  ["settings.py", "server/config/_settings.py"],
+                  ["__local.py", "server/config/_local.py"],
+                  ["__init__.py", "server/config/init.py"],
+                  ["local.py", "server/config/_local.py"]
+                ]
+              }
+            ],
+            "files": [
+              ["__init__.py", "server/init.py"],
+              ["wsgi.py", "server/config/_wsgi.py"],
+              ["urls.py", "server/config/urls.py"]
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "server/templates",
+    "files": [
+      ["base.html", "templates/_base.html"]
+    ]
+  }
+]
