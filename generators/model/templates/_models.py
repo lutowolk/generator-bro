@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 
 class {{capitalize modelName}}(models.Model):
     {{#each fields}}
-    {{this}}
+    {{{this}}}
     {{else}}
     # your database fields
     {{/each}}
