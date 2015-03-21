@@ -7,7 +7,7 @@ from apps.{{appName}}.models import {{capitalize modelName}}
 class {{capitalize modelName}}Factory(DjangoModelFactory):
     {{#each factoryFields}}
     {{this}}
-    {{/factoryFields}}
+    {{/each}}
 
     class Meta:
         model = {{capitalize modelName}}

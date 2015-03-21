@@ -4,7 +4,9 @@ var _ = require('lodash');
 var handlebars = require('handlebars');
 
 module.exports = {
-  generateFileStruct: generateFileStruct
+  generateFileStruct: generateFileStruct,
+  addToFile: addToFile,
+  f: f
 };
 
 /**
@@ -84,21 +86,30 @@ function generateFileStruct(sj, path, context) {
 }
 
 /**
- * @deprecated
- *
- * Get formating string and params and return result string.
+ * Wrapper on lodash template method.
  *
  * Usage:
  *
- * f('I'm {age} years old', {age: 10})
+ * f('I am {{age}} years old', {age: 10})
  *
- * @param tpl {String}
- * @param opts {Object}
+ * @param formatStr {String}
+ * @param options {Object}
  * @returns {String}
  * @private
  */
-function f(tpl, opts) {
-  _.each(_.keys(opts), function (opt){
-    tpl = tpl.replace('{'+opt+'}', opts[opt]);
-  }); return tpl;
+function f (formatStr, options) {
+  _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
+  var compile = _.template(formatStr);
+  return compile(options);
+}
+
+/**
+ * Add to end file string.
+ */
+function addToFile (filePath, newString, storage) {
+  var content = storage.read(filePath, newString);
+
+  content += f('\n{{str}}\n', {str: newString});
+
+  storage.write(filePath, content);
 }

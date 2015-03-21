@@ -1,23 +1,23 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var _ = require('lodash');
-var generateFileStruct = require('../../utils/generateFilesStruct').generateFileStruct;
+var generateFilesStruct = require('../../utils/generateFilesStruct');
+var gfs = generateFilesStruct.generateFileStruct;
+var f = generateFilesStruct.f;
+var addToFile = generateFilesStruct.addToFile;
+
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
     yeoman.Base.apply(this, arguments);
 
-    // set interpolate symbols {{ foo }}
-    this._.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
-    this._.templateSettings.escape = /{{-([\s\S]+?)}}/g;
-    this._.templateSettings.evaluate = /{{([\s\S]+?)}}/g;
-
+    // args
     this.argument('appModelName', {
-      type: String,
-      required: false
-    });
+      type: String, required: true});
 
-    this.option('def-save', {type: Boolean, defaults: false});
+    // options
+    this.option('def-save', {
+      type: Boolean, defaults: false});
   },
 
   parseArgs: function () {
@@ -25,7 +25,11 @@ module.exports = yeoman.generators.Base.extend({
 
     this.appName = _.first(appModelName);
     this.modelName = _.last(appModelName);
+    this.factoryFields = [];
+    this.fields = [];
+  },
 
+  parseOpts: function () {
     this.defSave = this.options.defSave;
   },
 
@@ -33,36 +37,28 @@ module.exports = yeoman.generators.Base.extend({
 
   },
 
-  writing: {
-    appDirectories: function () {
-      var structJSON = this.fs.readJSON(
-        this.templatePath('../struct.json'));
+  writing: function () {
+    var structJSON = this.fs.readJSON(
+      this.templatePath('../struct.json'));
 
-      generateFileStruct(structJSON, './', this);
-    }
+    gfs(structJSON, './', this);  // generate file struct for this generator
+  },
+
+  updateExistingFiles: function () {
+
+    addToFile(
+      f('server/apps/{{appName}}/models/__init__.py', this),
+      f('from apps.news.models.{{modelName}} import *', this),
+      this.fs);
+
+    addToFile(
+      f('server/apps/{{appName}}/admin/__init__.py', this),
+      f('from apps.news.admin.{{modelName}} import *', this),
+      this.fs);
+
+    addToFile(
+      f('server/apps/{{appName}}/factories/__init__.py', this),
+      f('from apps.news.factories.{{modelName}} import *', this),
+      this.fs);
   }
-
-  //updateExistingFiles: function () {
-  //  var scriptPath = this.config.get('path') + '/scripts/update_file.py';
-  //
-  //  if(!this.fs.exists(scriptPath)) {
-  //    this.log('Error. Path to the python script `update_file.py` is not found');
-  //    return false;
-  //  }
-  //
-  //  this.spawnCommand('python',
-  //    [scriptPath,
-  //      '-c', 'add_url_to_patterns',
-  //      '-p', './server/config/urls.py',
-  //      '-t', 'urlpatterns',
-  //      '-r', '^' + this.appname + '/',
-  //      '-u', 'apps.'+ this.appname +'.urls']);
-  //
-  //  this.spawnCommand('python',
-  //    [scriptPath,
-  //      '-c', 'add_str_to_tuple',
-  //      '-p', './server/config/settings/installed_apps.py',
-  //      '-t', 'LOCAL_APPS',
-  //      '-v', 'apps.' + this.appname]);
-  //}
 });

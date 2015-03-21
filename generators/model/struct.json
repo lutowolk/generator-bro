@@ -1,20 +1,26 @@
 [
   {
-    "name": "server/apps/{appName}/models",
+    "name": "server/apps/{{appName}}/models",
     "files": [
-      ["{modelName}.py", "_models.py"]
+      ["{{modelName}}.py", "_models.py"]
     ]
   },
   {
-    "name": "server/apps/{appName}/admin",
+    "name": "server/apps/{{appName}}/admin",
     "files": [
-      ["{modelName}.py", "_admin.py"]
+      ["{{modelName}}.py", "_admin.py"]
     ]
   },
   {
-    "name": "server/apps/{appName}/tests/models",
+    "name": "server/apps/{{appName}}/factories",
     "files": [
-      ["{modelName}.py", "_test_models.py"]
+      ["{{modelName}}.py", "_factory.py"]
+    ]
+  },
+  {
+    "name": "server/apps/{{appName}}/tests/models",
+    "files": [
+      ["{{modelName}}.py", "_test_models.py"]
     ]
   }
 ]
