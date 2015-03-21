@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var handlebars = require('handlebars');
 
 module.exports = {
   generateFileStruct: generateFileStruct
@@ -25,18 +26,26 @@ function generateFileStruct(sj, path, context) {
   }
 
   /**
+   * ToLowerCase wrapper
+   * @private
+   */
+  function tlc(s) {
+    return s.toLowerCase();
+  }
+
+  /**
    * Private reqursion function
    * @private
    */
   function _gfs(s, p, c) {
-    var dirName = p + f(s.name, {appName: c.appname});
+    var dirName = p + f(s.name, c);
 
-    c.dest.mkdir(dirName);
+    c.dest.mkdir(tlc(dirName));
 
     if (s.files) {
       _.each(s.files, function(fi) {
         // todo check: expected list of two elements
-        var dest = dirName + '/' + f(_.first(fi), {appName: c.appname});
+        var dest = dirName + '/' + f(_.first(fi), c);
         var tpl = _.last(fi);  // src template name
 
         // set curDir value for templates
@@ -44,12 +53,24 @@ function generateFileStruct(sj, path, context) {
 
         var tplName = _.last(tpl.split('/'));
 
+        handlebars.registerHelper('lower', function(str) {
+          return str.toLowerCase();
+        });
+
+        handlebars.registerHelper('upper', function(str) {
+          return str.toLowerCase();
+        });
+
+        handlebars.registerHelper('capitalize', function(str) {
+          return _.capitalize(str);
+        });
+
         if (_.first(tplName) === '_') {
-          c.fs.copyTpl(
-            c.templatePath(tpl), c.destinationPath(dest), c);
+          var tplCnt = handlebars.compile(c.fs.read(c.templatePath(tpl)));
+          c.fs.write(c.destinationPath(tlc(dest)), tplCnt(c));
         } else {
           c.fs.copy(
-            c.templatePath(tpl), c.destinationPath(dest));
+            c.templatePath(tpl), c.destinationPath(tlc(dest)));
         }
       });
     }

@@ -24,11 +24,12 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.18.0",
     "chalk": "^0.5.0",
-    "yosay": "^0.3.0",
+    "handlebars": "^3.0.0",
+    "lodash": "^3.3.1",
     "randomstring": "^1.0.3",
-    "lodash": "^3.3.1"
+    "yeoman-generator": "^0.18.0",
+    "yosay": "^0.3.0"
   },
   "devDependencies": {
     "mocha": "*"

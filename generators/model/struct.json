@@ -1,0 +1,20 @@
+[
+  {
+    "name": "server/apps/{appName}/models",
+    "files": [
+      ["{modelName}.py", "_models.py"]
+    ]
+  },
+  {
+    "name": "server/apps/{appName}/admin",
+    "files": [
+      ["{modelName}.py", "_admin.py"]
+    ]
+  },
+  {
+    "name": "server/apps/{appName}/tests/models",
+    "files": [
+      ["{modelName}.py", "_test_models.py"]
+    ]
+  }
+]
