@@ -1,6 +1,9 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var generateFileStruct = require('../../utils/generateFilesStruct').generateFileStruct;
+var generateFilesStruct = require('../../utils/generateFilesStruct');
+var gfs = generateFilesStruct.generateFileStruct;
+var f = generateFilesStruct.f;
+
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -21,31 +24,28 @@ module.exports = yeoman.generators.Base.extend({
       var structJSON = this.fs.readJSON(
         this.templatePath('../struct.json'));
 
-      generateFileStruct(structJSON, './', this);
+      gfs(structJSON, './', this);
     }
   },
 
+  /**
+   * Updating already existing files.
+   */
   updateExistingFiles: function () {
-  //  var scriptPath = this.config.get('path') + '/scripts/update_file.py';
-  //
-  //  if(!this.fs.exists(scriptPath)) {
-  //    this.log('Error. Path to the python script `update_file.py` is not found');
-  //    return false;
-  //  }
-  //
-  //  this.spawnCommand('python',
-  //    [scriptPath,
-  //      '-c', 'add_url_to_patterns',
-  //      '-p', './server/config/urls.py',
-  //      '-t', 'urlpatterns',
-  //      '-r', '^' + this.appName + '/',
-  //      '-u', 'apps.'+ this.appName +'.urls']);
-  //
-  //  this.spawnCommand('python',
-  //    [scriptPath,
-  //      '-c', 'add_str_to_tuple',
-  //      '-p', './server/config/settings/installed_apps.py',
-  //      '-t', 'LOCAL_APPS',
-  //      '-v', 'apps.' + this.appName]);
+    var content = this.fs.read('server/config/urls.py');
+
+    content = content.replace(
+      /(urlpatterns \+= patterns\(\n(\s*)'',[\n\w\s()'^/,]+)\)/,
+      f('$1$2url(r\'^{{appName}}/\', include(\'apps.{{appName}}.urls\')),\n)', this));
+
+    this.fs.write('server/config/urls.py', content);
+
+    content = this.fs.read('server/config/settings/installed_apps.py');
+
+    content = content.replace(
+      /(LOCAL_APPS = \([()\n\s'\w.,]+)\)/,
+      f('$1    \'apps.{{appName}}\',\n)', this));
+
+    this.fs.write('server/config/settings/installed_apps.py', content);
   }
 });
