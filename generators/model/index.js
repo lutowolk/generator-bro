@@ -196,17 +196,12 @@ module.exports = yeoman.generators.Base.extend({
   updateExistingFiles: function () {
     addToFile(
       f('server/apps/{{appName}}/models/__init__.py', this),
-      f('from apps.news.models.{{modelName}} import *', this),
+      f('from apps.{{appName}}.models.{{modelName.toLowerCase()}} import *', this),
       this.fs);
 
     addToFile(
       f('server/apps/{{appName}}/admin/__init__.py', this),
-      f('from apps.news.admin.{{modelName}} import *', this),
-      this.fs);
-
-    addToFile(
-      f('server/apps/{{appName}}/factories/__init__.py', this),
-      f('from apps.news.factories.{{modelName}} import *', this),
+      f('from apps.{{appName}}.admin.{{modelName.toLowerCase()}} import *', this),
       this.fs);
   }
 });

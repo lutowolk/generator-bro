@@ -1,6 +1,6 @@
 [
   {
-    "name": "{appName}",
+    "name": "{{appName}}",
     "files": [
       [".yo-rc.json", "_yo-rc.json"]
     ],
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "name": "server/templates",
+    "name": "{{appName}}/server/templates",
     "files": [
       ["base.html", "templates/_base.html"]
     ]

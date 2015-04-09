@@ -10,17 +10,5 @@
     "files": [
       ["{{modelName}}.py", "_admin.py"]
     ]
-  },
-  {
-    "name": "server/apps/{{appName}}/factories",
-    "files": [
-      ["{{modelName}}.py", "_factory.py"]
-    ]
-  },
-  {
-    "name": "server/apps/{{appName}}/tests/models",
-    "files": [
-      ["{{modelName}}.py", "_test_models.py"]
-    ]
   }
 ]

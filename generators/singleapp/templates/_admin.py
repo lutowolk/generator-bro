@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.contrib import admin
-from apps.{{appname}}.models import {{_.capitalize(appname)}}
+from apps.{{appName}}.models import {{capitalize appName}}
 
 
-class {{_.capitalize(appname)}}Admin(admin.ModelAdmin):
+class {{capitalize appName}}Admin(admin.ModelAdmin):
     """Override this class or remove"""
     pass
 
 
-admin.site.register({{_.capitalize(appname)}}, {{_.capitalize(appname)}}Admin)
+admin.site.register({{capitalize appName}}, {{capitalize appName}}Admin)

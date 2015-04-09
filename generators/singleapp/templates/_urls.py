@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, include, url
-from apps.{{appname}}.views import {{_.capitalize(appname)}}ListView, {{_.capitalize(appname)}}DetailView
+from apps.{{appName}}.views import {{capitalize appName}}ListView, {{capitalize appName}}DetailView
 
 
 urlpatterns = patterns(
     '',
-    url(r'^$', {{_.capitalize(appname)}}ListView.as_view(), name='{{appname}}.list'),
-    url(r'^(?P<slug>[-_\w]+)/$', {{_.capitalize(appname)}}DetailView.as_view(), name='{{appname}}.detail'),
+    url(r'^$', {{capitalize appName}}ListView.as_view(), name='{{appName}}.list'),
+    url(r'^(?P<slug>[-_\w]+)/$', {{capitalize appName}}DetailView.as_view(), name='{{appName}}.detail'),
 )

@@ -27,7 +27,7 @@ module.exports = yeoman.generators.Base.extend({
     this._.templateSettings.escape = /{{-([\s\S]+?)}}/g;
     this._.templateSettings.evaluate = /{{([\s\S]+?)}}/g;
 
-    this.argument('appname', {
+    this.argument('appName', {
       type: String, required: false
     });
     this.argument('dbType', {
@@ -55,7 +55,7 @@ module.exports = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      name: 'appname',
+      name: 'appName',
       message: 'Name of the project:',
       default: 'bro-project'
     }, {

@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
-from apps.{{appname}}.factories import {{_.capitalize(appname)}}Factory
+from apps.{{appName}}.factories import {{capitalize appName}}Factory
 from django.test import TestCase
 
 
-class {{_.capitalize(appname)}}ListViewTestCase(TestCase):
+class {{capitalize appName}}ListViewTestCase(TestCase):
     def setUp(self):
-        {{_.capitalize(appname)}}Factory()
+        {{capitalize appName}}Factory()
 
     def test_200(self):
-        response = self.client.get(reverse('{{appname}}.list'))
+        response = self.client.get(reverse('{{appName}}.list'))
         self.assertEqual(response.status_code, 200)
 
 
-class {{_.capitalize(appname)}}DetailViewTestCase(TestCase):
+class {{capitalize appName}}DetailViewTestCase(TestCase):
     def setUp(self):
-        self.item = {{_.capitalize(appname)}}Factory()
+        self.item = {{capitalize appName}}Factory()
 
     def test_200(self):
         response = self.client.get(
-            reverse('{{appname}}.detail', kwargs={'slug': self.item.slug}))
+            reverse('{{appName}}.detail', kwargs={'slug': self.item.slug}))
         self.assertEqual(response.status_code, 200)
