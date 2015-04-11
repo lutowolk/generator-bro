@@ -214,5 +214,13 @@ module.exports = yeoman.generators.Base.extend({
       f('server/apps/{{appName}}/admin/__init__.py', this),
       f('from apps.{{appName}}.admin.{{modelName.toLowerCase()}} import *', this),
       this.fs);
+  },
+
+  /**
+   * Show complete message.
+   */
+  end: function () {
+    this.log(f('Your models was created! Run ' +
+      './manage.py makemigrations {{appName}} && migrate', this));
   }
 });
