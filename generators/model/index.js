@@ -93,7 +93,7 @@ module.exports = yeoman.generators.Base.extend({
       return {
         name: name,
         args: opts,
-        fieldType: f('{{from}}{{ftype}}Field', {
+        fieldType: f('{{from}}{{ftype}}', {
           from: fromModule, ftype: self.modelFieldTypes[ftype].name})
       };
 

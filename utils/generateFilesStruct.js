@@ -97,7 +97,7 @@ function generateFileStruct(sj, path, context) {
  * @returns {String}
  * @private
  */
-function f (formatStr, options) {
+function f(formatStr, options) {
   _.templateSettings.interpolate = /{{([\s\S]+?)}}/g;
   var compile = _.template(formatStr);
   return compile(options);
@@ -106,10 +106,14 @@ function f (formatStr, options) {
 /**
  * Add to end file string.
  */
-function addToFile (filePath, newString, storage) {
+function addToFile(filePath, newString, storage) {
   var content = storage.read(filePath, newString);
 
-  content += f('\n{{str}}\n', {str: newString});
+  if(!/.*\n$/.test(content)) {
+    content += '\n'; // if file end without newline
+  }
+
+  content += f('{{str}}\n', {str: newString});
 
   storage.write(filePath, content);
 }
