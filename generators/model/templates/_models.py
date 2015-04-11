@@ -31,11 +31,4 @@ class {{capitalize modelName}}(models.Model):
             force_insert, force_update, using, update_fields)
 
     {{/defSave}}
-    def get_absolute_url(self):
-        {{#if isSlug}}
-        return reverse('{{lower modelName}}.detail', kwargs={'slug': self.slug})
-        {{else}}
-        return reverse('{{lower modelName}}.detail', kwargs={'pk': self.pk})
-        {{/if}}
-
     # your custom methods
