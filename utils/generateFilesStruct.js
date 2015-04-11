@@ -110,6 +110,10 @@ function f(formatStr, options) {
 function addToFile(filePath, newString, storage) {
   var content = storage.read(filePath, newString);
 
+  if(content.indexOf(newString) > -1) {
+    return false; // this string already exists
+  }
+
   if(!/.*\n$/.test(content)) {
     content += '\n'; // if file end without newline
   }

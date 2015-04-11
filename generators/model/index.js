@@ -45,7 +45,7 @@ module.exports = yeoman.generators.Base.extend({
       .result('name', undefined)
       .value();
 
-    this.isSlug = _.result(_.find(fieldsObj, 'name', 'slug'), 'name');
+    var isSlug = _.result(_.find(fieldsObj, 'name', 'slug'), 'name');
 
     this.isNameOrSlug = isName || isSlug;
 
