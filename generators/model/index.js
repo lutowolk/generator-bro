@@ -79,10 +79,14 @@ module.exports = yeoman.generators.Base.extend({
      */
     function getFieldObj(rawField) {
 
+      var validationErrMsg = colors.red('Error!') + f(' Field {{field}} invalid. ', {field: rawField}) +
+        'Field must have next format: ' + colors.green('title:char:blank=True,null=True');
+
       var nameTypeArgs = rawField.split(':');
 
-      if (nameTypeArgs.length < 2) {
-        throw new Error('Validation error');
+      if (nameTypeArgs.length !== 2 && nameTypeArgs.length !== 3) {
+        console.log(validationErrMsg);
+        process.exit(1);
       }
 
       var name = nameTypeArgs[0];
@@ -90,6 +94,12 @@ module.exports = yeoman.generators.Base.extend({
       var args = nameTypeArgs[2];
 
       var opts = getDefaultArgsForField(ftype, name); // options for field
+
+      if (!opts) {
+        console.log(colors.red(f('Error! Field {{name}} is not a valid. ' +
+          'Enter valid django field.', {name: ftype})));
+        process.exit(1);
+      }
 
       if (args) {
         var listKeyVal = args.split(',');
@@ -102,7 +112,8 @@ module.exports = yeoman.generators.Base.extend({
           } else if(keyVal.length === 2) {
             res[keyVal[0]] = keyVal[1];
           } else {
-            throw new Error('Validation error');
+            console.log(validationErrMsg);
+            process.exit(1);
           }
         }, opts);
       }
@@ -122,6 +133,8 @@ module.exports = yeoman.generators.Base.extend({
        * Default args building from two objects: model_field_types[field]
        * and `defaultArgsForAll` private variable.
        *
+       * If field does not exist in model_field_types - return false.
+       *
        * Will be removed in next minor version.
        *
        * @deprecated
@@ -130,11 +143,15 @@ module.exports = yeoman.generators.Base.extend({
        *
        * @param field {String}
        * @param name {String}
-       * @returns {Object}
+       * @returns {Object|Boolean}
        */
       function getDefaultArgsForField(field, name) {
         var defaultArgsForAll = {
           verbose_name: f('_("{{name}}")', {name: name})};  // jshint ignore:line
+
+        if(!_.has(self.modelFieldTypes, field)) {
+          return false;
+        }
 
         var defaultArgsForThis = self.modelFieldTypes[field].defaultArgs || {};
 
