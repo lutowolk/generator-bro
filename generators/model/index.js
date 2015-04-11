@@ -1,5 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var colors = require('colors');
 var _ = require('lodash');
 var generateFilesStruct = require('../../utils/generateFilesStruct');
 var gfs = generateFilesStruct.generateFileStruct;
@@ -32,6 +33,13 @@ module.exports = yeoman.generators.Base.extend({
     var self = this;
 
     var appModelName = this.appModelName.split(':');
+
+    if(appModelName.length !== 2) {
+      this.log(colors.red('Error!') + ' First arg must be app name and models name in next format ' +
+      colors.green('yo bro:model app:ModelName'));
+      process.exit(1);
+    }
+
     var fieldArgs = _.slice(this.arguments, 1); // get all args without first
 
     this.appName = _.first(appModelName);
@@ -220,7 +228,7 @@ module.exports = yeoman.generators.Base.extend({
    * Show complete message.
    */
   end: function () {
-    this.log(f('Your models was created! Run ' +
-      './manage.py makemigrations {{appName}} && migrate', this));
+    this.log(colors.green('Finish!') + ' Your models was created! Run ' +
+      colors.green(f('./manage.py makemigrations {{appName}} && migrate', this)));
   }
 });
