@@ -104,7 +104,8 @@ function f(formatStr, options) {
 }
 
 /**
- * Add to end file string.
+ * Add to end file string. If file end without new line - set newline
+ * and add new string.
  */
 function addToFile(filePath, newString, storage) {
   var content = storage.read(filePath, newString);
