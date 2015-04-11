@@ -40,9 +40,20 @@ module.exports = yeoman.generators.Base.extend({
     var fieldsObj = _.map(fieldArgs, getFieldObj);
     this.fields = _.map(fieldsObj, serializeModelField);
 
-    this.isSlug = _.find(fieldsObj, 'name', 'slug');
+    var isName = _.chain(fieldsObj)
+      .find(where)
+      .result('name', undefined)
+      .value();
+
+    this.isSlug = _.result(_.find(fieldsObj, 'name', 'slug'), 'name');
+
+    this.isNameOrSlug = isName || isSlug;
 
     this.factoryFields = [];
+
+    function where(f) {
+      return f.name === 'name' || f.name === 'title';
+    }
 
     /**
      * Convert raw string to file object.

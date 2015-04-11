@@ -17,10 +17,10 @@ class {{capitalize modelName}}(models.Model):
         verbose_name_plural = _("{{capitalize modelName}}s")
 
     def __unicode__(self):
-        {{#if isSlug}}
-        return self.slug
+        {{#if isNameOrSlug}}
+        return self.{{isNameOrSlug}}
         {{else}}
-        return self.pk
+        return str(self.pk)
         {{/if}}
 
     {{#defSave}}
