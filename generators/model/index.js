@@ -15,12 +15,18 @@ module.exports = yeoman.generators.Base.extend({
     // args
     this.argument('appModelName', {
       desc: 'App name and model name in next format: app:ModelName',
-      type: String,
-      required: true});
+      type: String, required: true});
 
     // options
     this.option('def-save', {
+      desc: 'Create model method save for next overriding',
       type: Boolean, defaults: false});
+
+    this.option('force', {
+      desc: 'Overwrite files that already exist',
+      type: Boolean, defaults: false});
+
+    this.conflicter.force = this.options.force;
   },
 
   initializing: function () {
