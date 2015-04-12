@@ -14,7 +14,9 @@ module.exports = yeoman.generators.Base.extend({
 
     // args
     this.argument('appModelName', {
-      type: String, required: true});
+      desc: 'App name and model name in next format: app:ModelName',
+      type: String,
+      required: true});
 
     // options
     this.option('def-save', {
