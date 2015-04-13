@@ -75,7 +75,9 @@ blog
 
 This generator will create a django app in `server.apps` directory. Also new app will be include to settings and root urlconf. 
 
-**Note: Before running this command move to project directory.**
+By default with new app wil be created `model` with name `AppName` for this models will be created two generic view `DetailView` and `ListView`. Also `factory`, `tests` and `admin class`.
+
+**Note: before running this command move to project directory.**
 
 #### Run
 
@@ -83,7 +85,7 @@ This generator will create a django app in `server.apps` directory. Also new app
 $ yo bro:singleapp <app_name>
 ```
 
-*Note: arg app_name is required*
+**Note: arg app_name is required.**
 
 #### Example
 
