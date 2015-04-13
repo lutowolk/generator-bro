@@ -10,11 +10,11 @@ coming soon...
 
 Package contain next generators:
 
-* `bro`
+- [**`bro`**](#bro)
 
-* `bro:singleapp`
+- [**`bro:singleapp`**](#brosingleapp)
 
-* `bro:model` 
+- [**`bro:model`**](#bromodel) 
 
 ### `bro`
 
