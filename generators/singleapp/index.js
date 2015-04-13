@@ -13,6 +13,12 @@ module.exports = yeoman.generators.Base.extend({
       type: String,
       required: false
     });
+
+    this.option('force', {
+      desc: 'Overwrite files that already exist',
+      type: Boolean, defaults: false});
+
+    this.conflicter.force = this.options.force;
   },
 
   initializing: function () {
