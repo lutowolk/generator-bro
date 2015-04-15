@@ -5,7 +5,7 @@ var fs = require('fs');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 
-describe('bro:app', function () {
+describe('bro:model', function () {
   var model;
   var mockPrompts = {
     dbType: 'postgresql_psycopg2',
