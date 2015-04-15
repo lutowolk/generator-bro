@@ -10,9 +10,11 @@ coming soon...
 
 Package contain next generators:
 
-* `bro`
+- [**`bro`**](#bro)
 
-* `bro:singleapp`
+- [**`bro:singleapp`**](#brosingleapp)
+
+- [**`bro:model`**](#bromodel) 
 
 ### `bro`
 
@@ -124,6 +126,70 @@ news
 |  ├─ views
 |  |  ├─ news.py
 |  |  └─ __init__.py
+|  └─ __init__.py
+└─ __init__.py
+```
+
+### `bro:model`
+
+This generator will create a django model in `server.apps.your_app.models` directory. For new model will be created admin class. Admin and model classes will be imported in `__init__.py` files. 
+
+**Note: before running this command move to project directory.**
+
+#### Run
+
+```
+$ yo bro:model <app_name:model_name> [<field_name:field_type[:arg1,arg2=val,arg3=val]> ...]
+```
+
+**Note: arg app_name:model_name is required.**
+
+#### Example
+
+This command create model `Blog` in app `blogs` in .
+
+```
+$ yo bro:model blogs:Blog title:char slug:slug content:text publish:bool:default=True
+```
+
+File content for new file `blogs.models.blog.py`:
+
+```python
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from django.db import models
+from django.utils.translation import ugettext as _
+
+
+class Blog(models.Model):
+    title = models.CharField(verbose_name=_("title"), max_length=255)
+    slug = models.SlugField(verbose_name=_("slug"))
+    content = models.TextField(verbose_name=_("content"))
+    publish = models.BooleanField(verbose_name=_("publish"), default=True)
+
+    class Meta:
+        verbose_name = _("Blog")
+        verbose_name_plural = _("Blogs")
+
+    def __unicode__(self):
+        return self.title
+
+    # your custom methods
+```
+
+Structure `blogs` app after creating model:
+
+```
+blogs
+├─ models
+|  ├─ mixins
+|  |  └─ __init__.py
+|  ├─ blog.py
+|  └─ __init__.py
+├─ admin
+|  ├─ mixins
+|  |  └─ __init__.py
+|  ├─ blog.py
 |  └─ __init__.py
 └─ __init__.py
 ```
