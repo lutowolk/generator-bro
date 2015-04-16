@@ -20,7 +20,7 @@
     "lib/generators/app",
     "lib/generators/singleapp",
     "lib/generators/model",
-    "lib/utils/generateFilesStruct"
+    "lib/utils"
   ],
   "keywords": [
     "yeoman-generator"
