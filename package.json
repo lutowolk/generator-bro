@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "Yeoman generator",
   "license": "MIT",
-  "main": "app/index.js",
+  "main": "lib/generators/app/index.js",
   "repository": "lutowolk/generator-bro",
   "author": {
     "name": "Constantin Luterovich",
@@ -17,8 +17,9 @@
     "test": "mocha"
   },
   "files": [
-    "app",
-    "singleapp"
+    "lib/generators/app",
+    "lib/generators/singleapp",
+    "lib/generators/model"
   ],
   "keywords": [
     "yeoman-generator"
