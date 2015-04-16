@@ -4,7 +4,9 @@ Generate your django project and django apps.
 
 ## Install
 
-coming soon...
+```
+npm install -g git://github.com/lutowolk/generator-bro 
+```
 
 ## Usage
 
