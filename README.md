@@ -25,7 +25,7 @@ This generator will create a django project.
 #### Run
 
 ```
-$ yo bro
+$ yo bro [<args>] [<options>]
 ```
 
 #### Args
@@ -86,10 +86,8 @@ By default with new app wil be created `model` with name `AppName` for this mode
 #### Run
 
 ```
-$ yo bro:sub <app_name>
+$ yo bro:sub <app_name> [<options>]
 ```
-
-**Note: arg app_name is required.**
 
 #### Example
 
@@ -134,17 +132,22 @@ news
 
 ### `bro:model`
 
-This generator will create a django model in `server.apps.your_app.models` directory. For new model will be created admin class. Admin and model classes will be imported in `__init__.py` files. 
+This generator will create a django model in `server.apps.your_app.models` directory. For new model will be created admin class. If model containg field with name *slug* for this field will be created prepopulated field. 
+
+Admin and model classes will be imported in `__init__.py` files. 
 
 **Note: before running this command move to project directory.**
 
 #### Run
 
 ```
-$ yo bro:model <app_name:model_name> [<field_name:field_type[:arg1,arg2=val,arg3=val]> ...]
+$ yo bro:model <app_name:model_name> [<field_name:field_type[:arg1,arg2=val]> ...] [<options>]
 ```
 
-**Note: arg app_name:model_name is required.**
+#### Options
+
+* `-s`,   `--def-save` Create model method save for next overriding.
+* `-p`,   `--prepopulated` Set prepopulated field name for slug field. Use this option if field slug exist and prepopulated field name differs from *name* or *title*.
 
 #### Example
 
