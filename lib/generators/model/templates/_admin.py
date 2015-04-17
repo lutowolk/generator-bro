@@ -6,7 +6,7 @@ from apps.{{appName}}.models import {{capitalize modelName}}
 
 class {{capitalize modelName}}Admin(admin.ModelAdmin):
     """Override this class or remove"""
-    pass
+    prepopulated_fields = {"slug": ("{{}}",)}
 
 
 admin.site.register({{capitalize modelName}}, {{capitalize modelName}}Admin)
