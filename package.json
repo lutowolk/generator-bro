@@ -18,7 +18,7 @@
   },
   "files": [
     "lib/generators/app",
-    "lib/generators/singleapp",
+    "lib/generators/sub",
     "lib/generators/model",
     "lib/utils"
   ],

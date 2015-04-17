@@ -14,7 +14,7 @@ Package contain next generators:
 
 - [**`bro`**](#bro)
 
-- [**`bro:singleapp`**](#brosingleapp)
+- [**`bro:sub`**](#brosub)
 
 - [**`bro:model`**](#bromodel) 
 
@@ -75,7 +75,7 @@ blog
    └─ __init__.py
 ```
 
-### `bro:singleapp`
+### `bro:sub`
 
 This generator will create a django app in `server.apps` directory. Also new app will be include to settings and root urlconf. 
 
@@ -86,7 +86,7 @@ By default with new app wil be created `model` with name `AppName` for this mode
 #### Run
 
 ```
-$ yo bro:singleapp <app_name>
+$ yo bro:sub <app_name>
 ```
 
 **Note: arg app_name is required.**
@@ -96,7 +96,7 @@ $ yo bro:singleapp <app_name>
 This command create app with name `news` in .
 
 ```
-$ yo bro:singleapp news
+$ yo bro:sub news
 ```
 
 App will be have next file structure:  
