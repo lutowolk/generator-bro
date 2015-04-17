@@ -5,8 +5,11 @@ from apps.{{appName}}.models import {{capitalize modelName}}
 
 
 class {{capitalize modelName}}Admin(admin.ModelAdmin):
+    {{#if isPrepopulated}}
+    prepopulated_fields = {"slug": ("{{prepopulated}}",)}
+    {{else}}
     """Override this class or remove"""
-    prepopulated_fields = {"slug": ("{{}}",)}
+    {{/if}}
 
 
 admin.site.register({{capitalize modelName}}, {{capitalize modelName}}Admin)
