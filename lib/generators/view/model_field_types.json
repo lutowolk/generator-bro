@@ -1,0 +1,36 @@
+{
+  "auto": {"name": "AutoField"},
+  "bigInteger": {"name": "BigIntegerField"},
+  "binary": {"name": "BinaryField"},
+  "bool": {"name": "BooleanField"},
+  "char": {
+    "name": "CharField",
+    "defaultArgs": {"max_length": 255}
+  },
+  "commaSepInt": {
+    "name": "CommaSeparatedIntegerField",
+    "defaultArgs": {"max_length": 255}
+  },
+  "date": {"name": "DateField"},
+  "dateTime": {"name": "DateTimeField"},
+  "decimal": {"name": "DecimalField"},
+  "email": {"name": "EmailField"},
+  "file": {"name": "FileField"},
+  "filePath": {"name": "FilePathField"},
+  "float": {"name": "FloatField"},
+  "image": {"name": "ImageField"},
+  "int": {"name": "IntegerField"},
+  "ip": {"name": "IPAddressField"},
+  "genericIp": {"name": "GenericIPAddressField"},
+  "nullBool": {"name": "NullBooleanField"},
+  "positiveInt": {"name": "PositiveIntegerField"},
+  "positiveSmallInt": {"name": "PositiveSmallIntegerField"},
+  "slug": {"name": "SlugField"},
+  "smallInt": {"name": "SmallIntegerField"},
+  "text": {"name": "TextField"},
+  "time": {"name": "TimeField"},
+  "url": {"name": "URLField"},
+  "fk": {"name": "ForeignKey"},
+  "m2m": {"name": "ManyToManyField"},
+  "o2o": {"name": "OneToOneField"}
+}
