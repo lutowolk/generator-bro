@@ -5,17 +5,17 @@ from django.views.generic import {{viewImports}}
 from apps.{{lower appName}}.forms.{{lower modelName}} import {{modelName}}Form
 {{/if}}
 {{#if options.list}}
-{{> listView}}
+{{> ListView}}
 {{/if}}
 {{#if options.detail}}
-{{> detailView}}
+{{> DetailView}}
 {{/if}}
 {{#if options.create}}
-{{> createView}}
+{{> CreateView}}
 {{/if}}
 {{#if options.update}}
-{{> updateView}}
+{{> UpdateView}}
 {{/if}}
 {{#if options.del}}
-{{> deleteView}}
+{{> DeleteView}}
 {{/if}}
