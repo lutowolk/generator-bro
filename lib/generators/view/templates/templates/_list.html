@@ -1,0 +1,14 @@
+{% extend "base.html" %}
+
+{% block content %}
+<div class="items">
+    {% for item in object_list %}
+        <div class="items__item">
+            <a href="{{ itemUrl }}" class="items__item__link">{{ item }}</a>
+            {{#each fields}}
+                <p>{{ field }}</p>
+            {{/each}}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
