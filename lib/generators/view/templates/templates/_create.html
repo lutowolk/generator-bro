@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="{% url "{{ formUrl }}" %}" method="POST" class="form-create">
+<form action="{% url "{{formUrl}}" %}" method="POST" class="form-create">
     {% csrf_token %}
     <fieldset>
-        <legend class="form-create__header">Create {{ modelName }}</legend>
+        <legend class="form-create__header">Create {{modelName}}</legend>
         {{#each fields}}
-        {{ field }}
+        {{{this}}}
         {{/each}}
     </fieldset>
 </form>
