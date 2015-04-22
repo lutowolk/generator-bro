@@ -14,6 +14,12 @@
         ]
       },
       {
+        "name": "forms",
+        "files": [
+          ["__init__.py", "init.py"]
+        ]
+      },
+      {
         "name": "models",
         "files": [
           ["{{appName}}.py", "_models.py"],
