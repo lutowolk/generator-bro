@@ -4,11 +4,45 @@
 <div class="items">
     {% for item in object_list %}
         <div class="items__item">
-            <a href="{{itemUrl}}" class="items__item__link">{{item}}</a>
+            <a href="\{{ item.get_absolute_url }}" class="items__item__link">\{{ item }}</a>
             {{#each fields}}
             <p>{{this}}</p>
             {{/each}}
         </div>
+
+        <div class="items__item__links">
+            {% url '{{appName}}:{{lower modelName}}.update' item.pk as update_url %}
+            {% url '{{appName}}:{{lower modelName}}.delete' item.pk as delete_url %}
+
+            {% if update_url %}<a href="\{{ update_url }}">Update</a>{% endif %}
+            {% if delete_url %}<a href="\{{ delete_url }}">Delete</a>{% endif %}
+        </div>
+
+        <hr/>
+    {% empty %}
+        <p>List is empty</p>
     {% endfor %}
+
+    <div class="items__pagination">
+        <span class="items__pagination__step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=\{{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="items__pagination__current">
+                Page \{{ page_obj.number }} of \{{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page=\{{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+
+    <hr/>
+
+    {% url '{{appName}}:{{lower modelName}}.create' as create_url %}
+
+    {% if create_url %}<a href="\{{ create_url }}">Create new item</a>{% endif %}
 </div>
 {% endblock %}

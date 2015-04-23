@@ -7,3 +7,4 @@ from apps.{{lower appName}}.models import {{modelName}}
 class {{modelName}}Form(ModelForm):
     class Meta:
         model = {{modelName}}
+        fields = '__all__'

@@ -2,9 +2,12 @@
 
 class {{modelName}}CreateView(CreateView):
     model = {{modelName}}
-    template_name = ''
     success_url = ''
     form_class = {{modelName}}Form
+
+    def get(self, request, *args, **kwargs):
+        """Override this method or remove."""
+        return super({{modelName}}CreateView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         """Override this method or remove."""

@@ -2,7 +2,7 @@
 
 class {{modelName}}DetailView(DetailView):
     model = {{modelName}}
-    slug_field = 'slug'
+    slug_field = '{{slugField}}'
 
     def get_object(self, queryset=None):
         """Override this method or remove."""

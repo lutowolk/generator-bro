@@ -2,6 +2,7 @@
 
 class {{modelName}}ListView(ListView):
     model = {{modelName}}
+    paginate_by = {{paginateBy}}
 
     def get_queryset(self):
         """Override this method or remove."""

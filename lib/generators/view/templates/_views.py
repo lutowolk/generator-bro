@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.views.generic import {{viewImports}}
-from apps.{{lower appName}}.models import {{modelName}}
+from django.core.urlresolvers import reverse
+from apps.{{appName}}.models import {{modelName}}
 {{#if includeForm}}
-from apps.{{lower appName}}.forms.{{lower modelName}} import {{modelName}}Form
+from apps.{{appName}}.forms.{{lower modelName}} import {{modelName}}Form
 {{/if}}
 {{#if options.list}}
 {{> ListView}}
