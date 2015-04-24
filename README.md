@@ -79,8 +79,6 @@ blog
 
 This generator will create a django app in `server.apps` directory. Also new app will be include to settings and root urlconf. 
 
-By default with new app wil be created `model` with name `AppName` for this models will be created two generic view `DetailView` and `ListView`. Also `factory`, `tests` and `admin class`.
-
 **Note: before running this command move to project directory.**
 
 #### Run
@@ -104,27 +102,21 @@ news
 ├─ models
 |  ├─ mixins
 |  |  └─ __init__.py
-|  ├─ news.py
 |  └─ __init__.py
 ├─ views
 |  ├─ mixins
 |  |  └─ __init__.py
-|  ├─ news.py
 |  └─ __init__.py
 ├─ factories
-|  ├─ news.py
 |  └─ __init__.py
 ├─ admin
 |  ├─ mixins
 |  |  └─ __init__.py
-|  ├─ news.py
 |  └─ __init__.py
 ├─ tests
 |  ├─ models
-|  |  ├─ news.py
 |  |  └─ __init__.py
 |  ├─ views
-|  |  ├─ news.py
 |  |  └─ __init__.py
 |  └─ __init__.py
 └─ __init__.py
