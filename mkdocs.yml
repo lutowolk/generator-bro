@@ -1,0 +1,8 @@
+site_name: Generator-Bro
+pages:
+- [index.md, Home]
+- [install.md, Install]
+- [usage.md, Usage]
+- [sponsors.md, Sponsors]
+- [contributing.md, Contributing]
+theme: readthedocs
