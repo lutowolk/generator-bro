@@ -71,6 +71,40 @@ settings file and include urls patterns for this app to root url conf.
 $ yo bro:sub news
 ```
 
+After completion of commands, will create the following files:
+
+```
+news
+├─ models
+|  ├─ mixins
+|  |  └─ __init__.py
+|  └─ __init__.py
+├─ views
+|  ├─ mixins
+|  |  └─ __init__.py
+|  └─ __init__.py
+├─ factories
+|  └─ __init__.py
+├─ forms
+|  └─ __init__.py
+├─ admin
+|  ├─ mixins
+|  |  └─ __init__.py
+|  └─ __init__.py
+├─ tests
+|  ├─ models
+|  |  └─ __init__.py
+|  ├─ views
+|  |  └─ __init__.py
+|  └─ __init__.py
+├─ urls.py
+└─ __init__.py
+```
+
+Next files will be update:|
+----- | ------
+server/config/settings/installed_apps.py|To this file will be append string with name for new app.
+server/config/urls.py|To this file will be include urlpatterns from new app **server/apps/news/urls.py**.
 
 ## Model
 
