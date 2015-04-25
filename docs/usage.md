@@ -2,20 +2,20 @@
 
 Package contain next generators:
 
-## [bro]()
+## bro:app
 
 Main generator for creating django project file structure. Generator create
 project file structure, create file with dependencies, create stub for local
 settings and complete file with you local settings such as database driver,
 name, user and password data.
 
-## [bro:sub]()
+## bro:sub
 
 Generator for creating django application. This generator create file structure
 for your app in directory with your other apps. Include this application to your
 settings file and include urls patterns for this app to root url conf.
 
-## [bro:model]()
+## bro:model
 
 Generator for creating django models. Create models for application and register
 this in admin panel. This is very easy way for creating your models. Your can
@@ -44,7 +44,7 @@ class News(models.Model):
 
 For more information about this generator read this [section]().
 
-## [bro:view]()
+## bro:view
 
 Generator for creating generic views. With help this generator you can very fast
 create views for your model. Just enter your model name and tell what kind of views
