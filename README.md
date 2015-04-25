@@ -1,6 +1,6 @@
 # generator-bro
 
-Generate your django project and django apps.
+This generator help you create django projects, apps, models and views very faster. See [usage](#usage) section for more information. This project based on [yeoman](http://yeoman.io/) generator. 
 
 ## Install
 
@@ -17,6 +17,8 @@ Package contain next generators:
 - [**`bro:sub`**](#brosub)
 
 - [**`bro:model`**](#bromodel) 
+
+- [**`bro:view`**](#broview) 
 
 ### `bro`
 
@@ -79,8 +81,6 @@ blog
 
 This generator will create a django app in `server.apps` directory. Also new app will be include to settings and root urlconf. 
 
-By default with new app wil be created `model` with name `AppName` for this models will be created two generic view `DetailView` and `ListView`. Also `factory`, `tests` and `admin class`.
-
 **Note: before running this command move to project directory.**
 
 #### Run
@@ -104,27 +104,21 @@ news
 ├─ models
 |  ├─ mixins
 |  |  └─ __init__.py
-|  ├─ news.py
 |  └─ __init__.py
 ├─ views
 |  ├─ mixins
 |  |  └─ __init__.py
-|  ├─ news.py
 |  └─ __init__.py
 ├─ factories
-|  ├─ news.py
 |  └─ __init__.py
 ├─ admin
 |  ├─ mixins
 |  |  └─ __init__.py
-|  ├─ news.py
 |  └─ __init__.py
 ├─ tests
 |  ├─ models
-|  |  ├─ news.py
 |  |  └─ __init__.py
 |  ├─ views
-|  |  ├─ news.py
 |  |  └─ __init__.py
 |  └─ __init__.py
 └─ __init__.py
@@ -198,3 +192,64 @@ blogs
 |  └─ __init__.py
 └─ __init__.py
 ```
+
+### `bro:view`
+
+With help this generator you may create generic view for your model. Just enter your model name and generator create views for this model. Generator support next generic view: `ListView`, `DetailView`, `CreateView`, `UpdateView` and `DeleteView`. You can tell the generator what kind of views you want to create with options. 
+
+**Note: before running this command move to project directory.**
+
+#### Run
+
+```
+$ yo bro:model <app_name:model_name> [<options>]
+```
+
+#### Options
+
+* `--list` for create `ListView` 
+* `--detail` for create `DetailView` 
+* `--create` for create `CreateView` 
+* `--update` for create `UpdateView` 
+* `--del` for create `DeleteView` 
+* `--paginate` set property paginate_by for class ListView usage this options with option `list`, default value `5`
+
+#### Example
+
+This command create all views for model `Blog` (see this model in above).
+
+```
+$ yo bro:view blogs:Blog --list --detail --create --update --del
+```
+
+After this command will be executed, will be created five classes in file `server/apps/blogs/views/blog.py`:
+
+* `BlogListView`
+* `BlogDetailView`
+* `BlogCreateView`
+* `BlogUpdateView`
+* `BlogDeleteView`
+
+Also will be created new form class `BlogForm` in file `server/apps/blogs/forms/blog.py` and include in `BlogCreateView` and `BlogUpdateView`. This views will be included in urls conf (`server/apps/blogs/urls.py`). With view `BlogDetailView` will be created method `get_absolute_url` in model `Blog`. For this views also will be created base templates witch contain data about models.
+
+New files:
+
+* `# server/apps/blogs/views/blog.py`
+* `# server/apps/blogs/forms/blog.py`
+* `# server/templates/blogs/blog_detail.html`
+* `# server/templates/blogs/blog_form.html`
+* `# server/templates/blogs/blog_list.html`
+
+Changed files:
+
+* `# server/apps/blogs/urls.py`
+* `# server/apps/blogs/models/blog.py`
+* `# server/apps/blogs/forms/__init__.py`
+
+## Sponsors 
+
+This project is developed with the financial support of [bro.agency](http://bro.agency/).
+
+## Contributing
+
+If you find errors or you know how improve this project please create issue in this [page](https://github.com/lutowolk/generator-bro/issues).
