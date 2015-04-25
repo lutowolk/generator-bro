@@ -6,3 +6,4 @@ pages:
 - ['sponsors.md', 'Sponsors']
 - ['contributing.md', 'Contributing']
 theme: readthedocs
+markdown_extensions: [admonition]
