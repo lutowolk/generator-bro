@@ -1,6 +1,10 @@
-# generator-bro
+# Generator-Bro
 
 This generator help you create django projects, apps, models and views very faster. See [usage](#usage) section for more information. This project based on [yeoman](http://yeoman.io/) generator. 
+
+## Docs
+
+Read full documentation for usage generator in [http://generator-bro.readthedocs.org/en/latest](http://generator-bro.readthedocs.org/en/latest/).
 
 ## Install
 
