@@ -113,6 +113,21 @@ this in admin panel. This is very easy way for creating your models. Your can
 create model with fields which you want from console usage short name for django
 fields types.
 
+For run generator enter command like in example to below:
+
+```bash
+$ yo bro:model <appName>:<ModelName> [<fieldName>:<shortName>[:<arg1,arg2=value>] ...]
+```
+
+Description|
+-----|-----
+appName| is name of you application
+ModelName| is name for your new model. Must be in **UpperCamelCase**.
+Fields| next arguments is optionality. If you do not enter their, model will be create without model fields.
+fieldName| is name for your field. Name fields must be in **snake_case** ([PEP8](https://www.python.org/dev/peps/pep-0008/)).
+shortName| is short name for type of model fields (see list with short names [below](#shortnames)).
+Arguments| for every field is not required. Args must be separated by commas. This arguments will be include to model field initialize.
+
 **Example:**
 
 ```bash
@@ -133,7 +148,38 @@ class News(models.Model):
         verbose_name_plural = _('Newss')
 ```
 
-For more information about this generator read this [section]().
+<a name="shortnames"></a> Full list of short names for model fields
+
+Short name | Model field | Default value
+-----------|-------------|--------------
+auto       | AutoField   |
+bigInteger | BigIntegerField|
+binary     | BinaryField |
+bool       | BooleanField|
+char       | CharField   | max_length=255
+commaSepInt| CommaSeparatedIntegerField | max_length=255
+date       | DateField   |
+dateTime   | DateTimeField|
+decimal    | DecimalField|
+email      | EmailField  |
+file       | FileField   |
+filePath   | FilePathField|
+float      | FloatField  |
+image      | ImageField  |
+int        | IntegerField|
+ip         | IPAddressField|
+genericIp  | GenericIPAddressField|
+nullBool   | NullBooleanField|
+positiveInt| PositiveIntegerField|
+positiveSmallInt| PositiveSmallIntegerField|
+slug       | SlugField   |
+smallInt   | SmallIntegerField|
+text       | TextField   |
+time       | TimeField   |
+url        | URLField    |
+fk         | ForeignKey  |
+m2m        | ManyToManyField|
+o2o        | OneToOneField|
 
 ## View
 
