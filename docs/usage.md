@@ -211,9 +211,38 @@ class NewsListView(ListView):
         return context
 ```
 
-Also generator create urlpatterns and base templates for your views.
+Also generator create urlpatterns and base templates for your views. After
+generator complete your works you can run django server and check that views works.
 
-After generator complete your works you can run django server and check that
-views works.
+With generator you can create next generic views:
 
-For more information about this generator read this [section]().
+### ListView
+
+For create this view run command with option `--list`. With this option you can
+set option `--paginate` this option given integer number and setting for views
+count items per page, by default value is 5.
+
+For this view will be created **template: model_name_list.html**
+
+### DetailView
+
+For create this view run command with option `--detail`.
+
+For this view will be created **template: model_name_detail.html**
+
+### CreateView
+
+For create this view run command with option `--create`. For create view and
+update view will be created empty model form class **ModelNameForm**.
+
+For this view will be created **template: model_name_form.html**
+
+### UpdateView
+
+For create this view run command with option `--update`.
+
+For this view will be created **template: model_name_form.html**
+
+### DeleteView
+
+For create this view run command with option `--del`.
