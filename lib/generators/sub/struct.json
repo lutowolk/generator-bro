@@ -81,5 +81,9 @@
         ]
       }
     ]
+  },
+  {
+    "name": "{{templates}}/{{appName}}",
+    "files": []
   }
 ]
