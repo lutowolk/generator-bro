@@ -1,6 +1,6 @@
 [
   {
-    "name": "server/apps/{{appName}}",
+    "name": "{{apps}}/{{appName}}",
     "files": [
       ["urls.py", "_urls.py"],
       ["__init__.py", "init.py"]
