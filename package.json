@@ -1,7 +1,7 @@
 {
   "name": "generator-bro",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "version": "0.0.2",
+  "description": "Generator for django apps",
   "license": "MIT",
   "main": "lib/generators/app/index.js",
   "repository": "lutowolk/generator-bro",
@@ -23,7 +23,11 @@
     "lib/utils"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "generator",
+    "django",
+    "views",
+    "models"
   ],
   "dependencies": {
     "chalk": "^0.5.0",
