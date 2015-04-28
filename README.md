@@ -5,7 +5,7 @@ This generator help you create django projects, apps, models and views very fast
 ## Install
 
 ```
-npm install -g git://github.com/lutowolk/generator-bro 
+npm install -g generator-bro
 ```
 
 ## Usage
