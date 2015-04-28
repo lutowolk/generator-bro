@@ -1,13 +1,13 @@
 {
   "name": "generator-bro",
   "version": "0.0.3",
-  "description": "Generator for django apps",
+  "description": "Generator for django projects and applications",
   "license": "MIT",
   "main": "lib/generators/app/index.js",
   "repository": "lutowolk/generator-bro",
   "author": {
     "name": "Konstantin Liuterovich",
-    "email": "",
+    "email": "constantin3627@gmail.com",
     "url": "https://github.com/lutowolk"
   },
   "engines": {
