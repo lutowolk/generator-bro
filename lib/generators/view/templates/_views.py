@@ -6,18 +6,6 @@ from apps.{{appName}}.models import {{modelName}}
 {{#if includeForm}}
 from apps.{{appName}}.forms.{{lower modelName}} import {{modelName}}Form
 {{/if}}
-{{#if options.list}}
-{{> ListView}}
-{{/if}}
-{{#if options.detail}}
-{{> DetailView}}
-{{/if}}
-{{#if options.create}}
-{{> CreateView}}
-{{/if}}
-{{#if options.update}}
-{{> UpdateView}}
-{{/if}}
-{{#if options.del}}
-{{> DeleteView}}
-{{/if}}
+{{#each viewsCode}}
+{{{this}}}
+{{/each}}
