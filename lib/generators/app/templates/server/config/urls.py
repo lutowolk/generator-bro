@@ -12,7 +12,7 @@ urlpatterns = patterns(
 
 # for internal apps
 urlpatterns += patterns(
-  '',
+    '',
 )
 
 if settings.DEBUG:
