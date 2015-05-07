@@ -1,0 +1,8 @@
+{
+  "generator-bro": {
+    "apps": "{{apps}}",
+    "rootUrlConfPath": "{{urls}}",
+    "installedAppsPath": "{{settings}}/installed_apps.py"{{#if templates}},{{/if}}
+    {{#if templates}}"templates": "{{templates}}"{{/if}}
+  }
+}
