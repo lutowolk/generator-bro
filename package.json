@@ -29,11 +29,13 @@
   "dependencies": {
     "chalk": "^0.5.0",
     "colors": "^1.0.3",
+    "fs-extra": "^0.18.2",
     "handlebars": "^3.0.0",
     "lodash": "^3.3.1",
     "randomstring": "^1.0.3",
     "yeoman-generator": "^0.18.0",
-    "yosay": "^0.3.0"
+    "yosay": "^0.3.0",
+    "mockery": "^1.4.0"
   },
   "devDependencies": {
     "mocha": "*"
