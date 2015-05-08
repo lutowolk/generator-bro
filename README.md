@@ -1,6 +1,6 @@
 # Generator-Bro
 
-This generator help you create django projects, apps, models and views very faster. See [usage](#usage) section for more information. This project based on [yeoman](http://yeoman.io/) generator. 
+To start usage generator right now follow next steps:This generator help you create django projects, apps, models and views very faster. See [usage](#usage) section for more information. This project based on [yeoman](http://yeoman.io/) generator. 
 
 ## Docs
 
@@ -28,7 +28,7 @@ Package contain next generators:
 
 ## Usage
 
-To start usage generator right now follow next steps:
+To start using generator right now follow next steps:
 
 ### If you want start new project with generator
 
@@ -38,11 +38,11 @@ Go to dir where you want create project and just run next command:
 $ yo bro my_project --dbType sqlite3 && cd my_project/server
 ```
 
-*For see other db types read the [docs](http://generator-bro.readthedocs.org/en/latest/generators/#app)*
+*For see other db types read the [docs](http://generator-bro.readthedocs.org/en/latest/generators/#app).*
 
 At now generator create empty project with settings. Change dir to `my_project` and create virtual env for this.
 
-If you using [workon](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
+If you using [workon](http://virtualenvwrapper.readthedocs.org/en/latest/install.html):
 
 ```bash
 $ mkvirtualenv my_project
@@ -54,31 +54,31 @@ If you don't using workon :)
 $ virtualenv my_env && source my_env/bin/activate
 ```
 
-Install dependencies 
+Install dependencies:
 
 ```bash
 $ pip install -r requirments.txt
 ```
 
-Run migrations and create superuser
+Run migrations and create superuser:
 
 ```bash
 $ ./manage.py migrate && ./manage.py createsuperuser
 ```
 
-At now create your first app with bro generator. Create empty app
+At now create your first app with bro generator. Create empty app with name todo:
 
 ```bash
 $ yo bro:sub todo
 ```
 
-Create model for this app
+Create model for this app:
 
 ```bash
-$ yo bro:model todo:Todo text:text created_at:datetime:auto_now_add=True
+$ yo bro:model todo:Todo text:text created_at:dateTime:auto_now_add=True
 ```
 
-This command create simple model. See code above
+This command create simple model. See code above:
 
 ```python
 # server/apps/todo/models/todo.py
@@ -99,17 +99,17 @@ class Todo(models.Model):
     # your custom methods
 ```
 
-Create migrations and run it
+Create migrations and run it:
 
 ```bash
 $ ./manage.py makemigrations todo && ./manage.py migrate
 ```
 
-For more info about **bro:model** generator see [docs](http://generator-bro.readthedocs.org/en/latest/generators#model)
+For more info about **bro:model** generator see [docs](http://generator-bro.readthedocs.org/en/latest/generators#model).
 
 At now creating views for this model. Generator **bro:view** support five generic views: list, detail, create, update and delete.
 
-Creating for Todo model all views
+Creating all views for Todo model:
 
 ```bash
 $ yo bro:view todo:Todo --list --detail --create --update --del
@@ -117,7 +117,7 @@ $ yo bro:view todo:Todo --list --detail --create --update --del
 
 Run django webserver and open your browser in this url [http://localhost:8000/todo/todo](http://localhost:8000/todo/todo) and see what you get. 
 
-Also you can check that your model registered in django-admin [http://localhost:8000/admin/todo/todo](http://localhost:8000/admin/todo/todo)
+Also you can check that your model registered in django-admin [http://localhost:8000/admin/todo/todo](http://localhost:8000/admin/todo/todo).
 
 ### If you want continue develop existing project with generator
 
@@ -126,8 +126,6 @@ Go to root directory of your project and run next command for creating config fi
 ```bash
 $ yo bro:config --apps replative_path_to_apps_dir --settings relative_path_to_settings_dir --urls relative path_to_root_url_conf_file
 ```
-
-More info about bro:config see in the [docs](http://generator-bro.readthedocs.org/en/latest/generators#config)
 
 At now you can creating apps, models and views with bro generator. See [docs](http://generator-bro.readthedocs.org/en/latest/generators) for more info about generators. 
 
