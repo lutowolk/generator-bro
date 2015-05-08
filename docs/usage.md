@@ -246,3 +246,42 @@ For this view will be created **template: model_name_form.html**
 ### DeleteView
 
 For create this view run command with option `--del`.
+
+## Config
+
+If you want use generator-bro with your project which already exists and was created without generator.
+You need use sub generator **bro:config**. This generator create config file **.yo-rc.json**
+and other settings files for your django project that provide work for other sub generators (see above).
+
+**Example:**
+
+Go to your project dir.
+
+```bash
+$ cd /path/to/your/project
+```
+
+And run next command from your project root directory.
+
+```bash
+$ yo bro:config
+```
+
+You can run command with options or without. If you run command without options
+you will need to answer a few questions in interactive mode.
+
+**List options**
+
+**--settings** path to django project settings dir. If you not use settings package and
+use a single settings file you need create settings package.
+
+**--apps** path to your apps directory.
+
+**--urls** path to your root urls conf file.
+
+**--templates** path to your templates directory this options **is not required**
+
+!!! note "Relative path"
+    All paths should be relatively of your project. For example if path for your
+    project **/path/to/your/project** and path to your apps **/path/to/your/project/my_apps**
+    then set option apps like this **--apps my_apps**
