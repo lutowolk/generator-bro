@@ -1,4 +1,4 @@
-# Usage
+# Generators
 
 Package contain next generators:
 

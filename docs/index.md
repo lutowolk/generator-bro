@@ -6,7 +6,7 @@ This generator help you create django projects, apps, models and views very fast
 
 * [Install](/install/)
 
-* [Usage](/usage/)
+* [Generators](/generators/)
 
 * [Sponsors](/sponsors/)
 

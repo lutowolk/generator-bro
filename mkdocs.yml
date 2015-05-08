@@ -2,7 +2,7 @@ site_name: Generator-Bro
 pages:
 - ['index.md', 'Home']
 - ['install.md', 'Install']
-- ['usage.md', 'Usage']
+- ['generators.md', 'Generators']
 - ['sponsors.md', 'Sponsors']
 - ['contributing.md', 'Contributing']
 theme: readthedocs
