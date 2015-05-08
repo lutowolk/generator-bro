@@ -12,243 +12,124 @@ Read full documentation for usage generator in [http://generator-bro.readthedocs
 npm install -g generator-bro
 ```
 
-## Usage
+## Generators
 
 Package contain next generators:
 
-- [**`bro`**](#bro)
+- [**`bro`**](http://generator-bro.readthedocs.org/en/latest/generators/#app)
 
-- [**`bro:sub`**](#brosub)
+- [**`bro:sub`**](http://generator-bro.readthedocs.org/en/latest/generators/#sub)
 
-- [**`bro:model`**](#bromodel) 
+- [**`bro:model`**](http://generator-bro.readthedocs.org/en/latest/generators/#model) 
 
-- [**`bro:view`**](#broview) 
+- [**`bro:view`**](http://generator-bro.readthedocs.org/en/latest/generators/#view)
 
-### `bro`
+- [**`bro:config`**](http://generator-bro.readthedocs.org/en/latest/generators/#config) 
 
-This generator will create a django project.
+## Usage
 
-#### Run
+To start usage generator right now follow next steps:
 
-```
-$ yo bro [<args>] [<options>]
-```
+### If you want start new project with generator
 
-#### Args
+Go to dir where you want create project and just run next command:
 
-First arg - project name;
-
-Second arg - django database backend. One of this: `postgresql_psycopg2`, `mysql`, `sqlite3`, `oracle`;
-
-Third arg - database user.
-
-Four arg - database user password.
-
-All this args is `not required`.
-
-#### Example
-
-This command create project with name `blog`.
-
-```
-$ yo bro blog
+```bash
+$ yo bro my_project --dbType sqlite3 && cd my_project/server
 ```
 
-Project will be have next file structure:  
+*For see other db types read the [docs](http://generator-bro.readthedocs.org/en/latest/generators/#app)*
 
-```
-blog
-├─ client
-└─ server
-   ├─ apps
-   |  └─ __init__.py
-   ├─ libs
-   ├─ contrib
-   ├─ config
-   |  ├─ settings
-   |  |  ├─ installed_apps.py
-   |  |  ├─ local.py
-   |  |  ├─ settings.py
-   |  |  ├─ __local.py
-   |  |  └─ __init__.py
-   |  ├─ urls.py
-   |  ├─ wsgi.py
-   |  └─ __init__.py
-   ├─ templates
-   |  └─ base.html
-   ├─ manage.py
-   ├─ requirments.txt
-   └─ __init__.py
+At now generator create empty project with settings. Change dir to `my_project` and create virtual env for this.
+
+If you using [workon](http://virtualenvwrapper.readthedocs.org/en/latest/install.html)
+
+```bash
+$ mkvirtualenv my_project
 ```
 
-### `bro:sub`
+If you don't using workon :)
 
-This generator will create a django app in `server.apps` directory. Also new app will be include to settings and root urlconf. 
-
-**Note: before running this command move to project directory.**
-
-#### Run
-
-```
-$ yo bro:sub <app_name> [<options>]
+```bash
+$ virtualenv my_env && source my_env/bin/activate
 ```
 
-#### Example
+Install dependencies 
 
-This command create app with name `news` in .
-
-```
-$ yo bro:sub news
+```bash
+$ pip install -r requirments.txt
 ```
 
-App will be have next file structure:  
+Run migrations and create superuser
 
-```
-news
-├─ models
-|  ├─ mixins
-|  |  └─ __init__.py
-|  └─ __init__.py
-├─ views
-|  ├─ mixins
-|  |  └─ __init__.py
-|  └─ __init__.py
-├─ factories
-|  └─ __init__.py
-├─ admin
-|  ├─ mixins
-|  |  └─ __init__.py
-|  └─ __init__.py
-├─ tests
-|  ├─ models
-|  |  └─ __init__.py
-|  ├─ views
-|  |  └─ __init__.py
-|  └─ __init__.py
-└─ __init__.py
+```bash
+$ ./manage.py migrate && ./manage.py createsuperuser
 ```
 
-### `bro:model`
+At now create your first app with bro generator. Create empty app
 
-This generator will create a django model in `server.apps.your_app.models` directory. For new model will be created admin class. If model containg field with name *slug* for this field will be created prepopulated field. 
-
-Admin and model classes will be imported in `__init__.py` files. 
-
-**Note: before running this command move to project directory.**
-
-#### Run
-
-```
-$ yo bro:model <app_name:model_name> [<field_name:field_type[:arg1,arg2=val]> ...] [<options>]
+```bash
+$ yo bro:sub todo
 ```
 
-#### Options
+Create model for this app
 
-* `-s`,   `--def-save` Create model method save for next overriding.
-* `-p`,   `--prepopulated` Set prepopulated field name for slug field. Use this option if field slug exist and prepopulated field name differs from *name* or *title*.
-
-#### Example
-
-This command create model `Blog` in app `blogs` in .
-
-```
-$ yo bro:model blogs:Blog title:char slug:slug content:text publish:bool:default=True
+```bash
+$ yo bro:model todo:Todo text:text created_at:datetime:auto_now_add=True
 ```
 
-File content for new file `blogs.models.blog.py`:
+This command create simple model. See code above
 
 ```python
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-from django.db import models
-from django.utils.translation import ugettext as _
+# server/apps/todo/models/todo.py
 
+...
 
-class Blog(models.Model):
-    title = models.CharField(verbose_name=_("title"), max_length=255)
-    slug = models.SlugField(verbose_name=_("slug"))
-    content = models.TextField(verbose_name=_("content"))
-    publish = models.BooleanField(verbose_name=_("publish"), default=True)
+class Todo(models.Model):
+    text = models.TextField(verbose_name=_("text"))
+    created_at = models.DateTimeField(verbose_name=_("created_at"), auto_now_add=True)
 
     class Meta:
-        verbose_name = _("Blog")
-        verbose_name_plural = _("Blogs")
+        verbose_name = _("Todo")
+        verbose_name_plural = _("Todos")
 
     def __unicode__(self):
-        return self.title
+        return str(self.pk)
 
     # your custom methods
 ```
 
-Structure `blogs` app after creating model:
+Create migrations and run it
 
-```
-blogs
-├─ models
-|  ├─ mixins
-|  |  └─ __init__.py
-|  ├─ blog.py
-|  └─ __init__.py
-├─ admin
-|  ├─ mixins
-|  |  └─ __init__.py
-|  ├─ blog.py
-|  └─ __init__.py
-└─ __init__.py
+```bash
+$ ./manage.py makemigrations todo && ./manage.py migrate
 ```
 
-### `bro:view`
+For more info about **bro:model** generator see [docs](http://generator-bro.readthedocs.org/en/latest/generators#model)
 
-With help this generator you may create generic view for your model. Just enter your model name and generator create views for this model. Generator support next generic view: `ListView`, `DetailView`, `CreateView`, `UpdateView` and `DeleteView`. You can tell the generator what kind of views you want to create with options. 
+At now creating views for this model. Generator **bro:view** support five generic views: list, detail, create, update and delete.
 
-**Note: before running this command move to project directory.**
+Creating for Todo model all views
 
-#### Run
-
-```
-$ yo bro:model <app_name:model_name> [<options>]
+```bash
+$ yo bro:view todo:Todo --list --detail --create --update --del
 ```
 
-#### Options
+Run django webserver and open your browser in this url [http://localhost:8000/todo/todo](http://localhost:8000/todo/todo) and see what you get. 
 
-* `--list` for create `ListView` 
-* `--detail` for create `DetailView` 
-* `--create` for create `CreateView` 
-* `--update` for create `UpdateView` 
-* `--del` for create `DeleteView` 
-* `--paginate` set property paginate_by for class ListView usage this options with option `list`, default value `5`
+Also you can check that your model registered in django-admin [http://localhost:8000/admin/todo/todo](http://localhost:8000/admin/todo/todo)
 
-#### Example
+### If you want continue develop existing project with generator
 
-This command create all views for model `Blog` (see this model in above).
+Go to root directory of your project and run next command for creating config file. This config file need for other generators.
 
-```
-$ yo bro:view blogs:Blog --list --detail --create --update --del
+```bash
+$ yo bro:config --apps replative_path_to_apps_dir --settings relative_path_to_settings_dir --urls relative path_to_root_url_conf_file
 ```
 
-After this command will be executed, will be created five classes in file `server/apps/blogs/views/blog.py`:
+More info about bro:config see in the [docs](http://generator-bro.readthedocs.org/en/latest/generators#config)
 
-* `BlogListView`
-* `BlogDetailView`
-* `BlogCreateView`
-* `BlogUpdateView`
-* `BlogDeleteView`
-
-Also will be created new form class `BlogForm` in file `server/apps/blogs/forms/blog.py` and include in `BlogCreateView` and `BlogUpdateView`. This views will be included in urls conf (`server/apps/blogs/urls.py`). With view `BlogDetailView` will be created method `get_absolute_url` in model `Blog`. For this views also will be created base templates witch contain data about models.
-
-New files:
-
-* `# server/apps/blogs/views/blog.py`
-* `# server/apps/blogs/forms/blog.py`
-* `# server/templates/blogs/blog_detail.html`
-* `# server/templates/blogs/blog_form.html`
-* `# server/templates/blogs/blog_list.html`
-
-Changed files:
-
-* `# server/apps/blogs/urls.py`
-* `# server/apps/blogs/models/blog.py`
-* `# server/apps/blogs/forms/__init__.py`
+At now you can creating apps, models and views with bro generator. See [docs](http://generator-bro.readthedocs.org/en/latest/generators) for more info about generators. 
 
 ## Sponsors 
 
