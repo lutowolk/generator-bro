@@ -9,6 +9,21 @@ project file structure, create file with dependencies, create stub for local
 settings and complete file with you local settings such as database driver,
 name, user and password data.
 
+**Command**
+
+```bash
+$ yo bro <projectName> [options]
+```
+
+**Options**
+
+**--dbType** type for database backend, one of this: **postgresql_psycopg2**,
+**mysql**, **sqlite3** or **oracle**.
+
+**--dbUser** username for database.
+
+**--dbPassword** password for database.
+
 **Example:**
 
 ```bash
@@ -65,6 +80,16 @@ Generator for creating django application. This generator create file structure
 for your app in directory with your other apps. Include this application to your
 settings file and include urls patterns for this app to root url conf.
 
+**Command**
+
+```bash
+$ yo bro:sub <appName> [options]
+```
+
+**Options**
+
+**--force** overwrite files which already exist.
+
 **Example:**
 
 ```bash
@@ -73,7 +98,7 @@ $ yo bro:sub news
 
 After completion of commands, will create the following files:
 
-```
+```python
 news
 ├─ models
 |  ├─ mixins
@@ -111,13 +136,15 @@ server/config/urls.py|To this file will be include urlpatterns from new app **se
 Generator for creating django models. Create models for application and register
 this in admin panel. This is very easy way for creating your models. Your can
 create model with fields which you want from console usage short name for django
-fields types.
+fields types. For run generator enter command like in example to below.
 
-For run generator enter command like in example to below:
+**Command**
 
 ```bash
-$ yo bro:model <appName>:<ModelName> [<fieldName>:<shortName>[:<arg1,arg2=value>] ...]
+$ yo bro:model <appName>:<ModelName> [<fieldName>:<shortName>[:<arg1,arg2=value>] ...] [options]
 ```
+
+**Arguments**
 
 Description|
 -----|-----
@@ -127,6 +154,18 @@ Fields| next arguments is optionality. If you do not enter their, model will be 
 fieldName| is name for your field. Name fields must be in **snake_case** ([PEP8](https://www.python.org/dev/peps/pep-0008/)).
 shortName| is short name for type of model fields (see list with short names [below](#shortnames)).
 Arguments| for every field is not required. Args must be separated by commas. This arguments will be include to model field initialize.
+
+**Options**
+
+**-s**, **--def-save** create model method save for new model.
+
+**-f**, **--force** overwrite files that already exist.
+
+**-p**, **--prepopulated** prepopulated field name for admin class.
+
+**--model** file name when you want create model (set filename only without extension).
+
+**--admin** file name when you want create admin class for model (set filename only without extension).
 
 **Example:**
 
