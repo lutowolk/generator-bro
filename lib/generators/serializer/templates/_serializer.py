@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from {{apps}}.{{app}}.models import {{modelName}}
+from rest_framework import serializers
+from {{pyapp}}.models.{{lower modelName}} import {{modelName}}
 
 
 class {{modelName}}Serializer(serializers.ModelSerializer):
