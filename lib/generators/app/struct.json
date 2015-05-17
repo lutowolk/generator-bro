@@ -43,7 +43,7 @@
               {
                 "name": "settings",
                 "files": [
-                  ["installed_apps.py", "server/config/installed_apps.py"],
+                  ["installed_apps.py", "server/config/_installed_apps.py"],
                   ["settings.py", "server/config/_settings.py"],
                   ["__local.py", "server/config/_local.py"],
                   ["__init__.py", "server/config/init.py"],
@@ -54,7 +54,7 @@
             "files": [
               ["__init__.py", "server/init.py"],
               ["wsgi.py", "server/config/_wsgi.py"],
-              ["urls.py", "server/config/urls.py"]
+              ["urls.py", "server/config/_urls.py"]
             ]
           }
         ]
