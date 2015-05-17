@@ -1,6 +1,6 @@
 {
   "name": "generator-bro",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Generator for django projects and applications",
   "license": "MIT",
   "main": "lib/generators/app/index.js",
