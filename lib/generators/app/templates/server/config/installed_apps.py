@@ -9,6 +9,7 @@ INSTALLED_APPS = (
   'django.contrib.messages',
   'django.contrib.staticfiles',
   'django.contrib.admin',
+  {{#if drf}}'rest_framework',{{/if}}
 )
 
 LOCAL_APPS = (

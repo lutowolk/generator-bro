@@ -1,9 +1,10 @@
 {
   "generator-bro": {
-    "path": "{{gRootDir}}",
     "apps": "server/apps",
     "rootUrlConfPath": "server/config/urls.py",
     "installedAppsPath": "server/config/settings/installed_apps.py",
-    "templates": "server/templates"
+    "templates": "server/templates"{{#if drf}},
+    "drf": true
+{{/if}}
   }
 }
