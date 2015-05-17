@@ -40,39 +40,35 @@ See stub for index.js in next listing:
 'use strict';
 
 var _ = require('lodash');
-var path = require('path');
-var fs = require('fs-extra');
-var format = require('util').format;
-var Core = require('../../core/core');
-var yeoman = require('yeoman-generator');
 
-// Your generator must be extend from Core object.
+var helpers = require('../../core/helpers');
+var core = require('../../core/generators/core');
+var gHelper = require('../../core/generators/helper');
 
-module.exports = Core.extend({
-  constructor: function () {
-    yeoman.Base.apply(this, arguments);
-
-    // Your options this
+var selfGenerator = {
+  _setArguments: function() {
+    // Your arguments this.
     this.argument('my_argument', {
       desc: 'Description for my argument',
       type: String});
 
-    // ...
+    // Other args ...
+  },
 
-    // Your options this
+  _setOptions: function () {
+    // Your options this.
     this.option('my_option', {
       desc: 'Description for my option',
       type: String});
 
-    // ...
+    // Other opts ...
+
+    // After user input your options you can get in this.opts object.
   },
 
-  prompting: function () {
-    var self = this;
-    var done = this.async();
-
+  _questions: function () {
     // List with your questions
-    var questions = [{
+    return [{
       type: 'input',
       name: 'myQuestion',
       message: 'Question text',
@@ -81,53 +77,26 @@ module.exports = Core.extend({
       store: true
     }];
 
-    this.prompt(questions, function (answers) {
-      self.answers = answers;  // save given answers in self
-      done();
-    }.bind(this));
-
     // Your functions for validate answers.
     function validateAnswer(answer) {
       return !!answer;
     }
-
-    // ...
   },
 
-  initializing: {
-    // Parse options, validate and save its in this.
-    parseOpts: function () {
-      this.my_option = this.options.my_option;
-    },
-    // Parse options, validate and save its in this.
-    parseArgs: function () {
-      this.my_argument = this.my_argument;
-    },
-    // Parse options, validate and save its in this.
-    parseAnswers: function () {
-      this.my_answer = this.answers.myQuestion;
-    },
-    // And then you may create own functions which will be call automatically.
-    // This function must be initialize something.
-    myCustom: function () {
-      // ...
-    }
+  _beforeInit: function () {
+    // before end init
+  },
+
+  _afterInit: function () {
+    // after end init
   },
 
   // This is global context, this function must will be return object always.
   // Returned object using in template generating as context for handlebars.
-  context: function () {
+  _setContext: function () {
     return {
       myVar: 'My var value'
     };
-  },
-
-  // Warning: in this function called private function Core._writing. If you
-  // remove this call section creating will be work incorrect.
-  //
-  // In next versions bro-generator this function will be move to core.
-  writing: function() {
-    this._writing();
   },
 
   // Creating section describe files which will be creating or updating.
@@ -200,11 +169,16 @@ module.exports = Core.extend({
     }
   },
 
-  end: function () {
-    // Message in end
-    this.log('Finish!');
+  _beforeEnd: function () {
+    // before end hook
+  },
+
+  _afterEnd: function () {
+    // after end hook
   }
-});
+};
+
+module.exports = helpers.extendOf(gHelper, core, selfGenerator);
 ```
 
 **struct.json**
