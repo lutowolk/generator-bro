@@ -3,8 +3,7 @@
     "apps": "server/apps",
     "rootUrlConfPath": "server/config/urls.py",
     "installedAppsPath": "server/config/settings/installed_apps.py",
-    "templates": "server/templates"{{#if drf}},
-    "drf": true
-{{/if}}
+    "templates": "server/templates",
+    "drf": {{#if drf}}true{{else}}false{{/if}}
   }
 }
