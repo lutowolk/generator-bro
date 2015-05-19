@@ -8,6 +8,7 @@ from rest_framework import routers
 urlpatterns = patterns(
     '',
 )
+
 {{#if drf}}
 ################################################################
 # api urls
