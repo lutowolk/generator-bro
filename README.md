@@ -24,6 +24,10 @@ Package contain next generators:
 
 - [**`bro:view`**](http://generator-bro.readthedocs.org/en/latest/generators/#view)
 
+- [**`bro:serializer`**](http://generator-bro.readthedocs.org/en/latest/generators/#serializer)
+
+- [**`bro:viewset`**](http://generator-bro.readthedocs.org/en/latest/generators/#viewset)
+
 - [**`bro:config`**](http://generator-bro.readthedocs.org/en/latest/generators/#config) 
 
 ## Usage
