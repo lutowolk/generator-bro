@@ -286,6 +286,57 @@ For this view will be created **template: model_name_form.html**
 
 For create this view run command with option `--del`.
 
+## Serializer
+
+Create **DRF** serializer for your model.
+
+**Example:**
+
+```bash
+$ yo bro:serializer news.News
+```
+
+This command create file news.py in serializers package:
+
+```python
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from apps.news.models.news import News
+from rest_framework import serializers
+
+
+class NewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News
+```
+
+*If serializers package does not exists, will be create.*
+
+You can use option **--file** for writing serializer to some existing file.
+
+**Example:**
+
+```bash
+$ yo bro:serializer news.News --file=path/to/file.py
+```
+
+Option file take path to destination file relatively app directory **news**.
+
+To file **apps/news/path/to/file.py** will be writing next code:
+
+```python
+...
+
+from apps.news.models.news import News
+from rest_framework import serializers
+
+...
+
+class NewsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = News
+```
+
 ## Config
 
 If you want use generator-bro with your project which already exists and was created without generator.
