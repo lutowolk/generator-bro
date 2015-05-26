@@ -337,6 +337,41 @@ class NewsSerializer(serializers.ModelSerializer):
         model = News
 ```
 
+## Viewset
+
+Create **DRF** viewset for your model.
+
+**Example:**
+
+```bash
+$ yo bro:viewset news.News
+```
+
+This command create file news.py in viewsets package and update urls.py for **news** app:
+
+```python
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from apps.news.viewsets.news import NewsSerializer
+from apps.news.models.news import News
+from rest_framework import viewsets
+
+
+class NewsViewSet(viewsets.ModelViewSet):
+    serializer_class = NewsSerializer
+    queryset = News.objects.all()
+```
+
+*If viewsets package does not exists, will be create.*
+
+To urls.py will be add next string:
+
+```python
+router.register('news', NewsViewSet)
+```
+
+Viewset command also support **--file** option like a serializer (see above).
+
 ## Config
 
 If you want use generator-bro with your project which already exists and was created without generator.
