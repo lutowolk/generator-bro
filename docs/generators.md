@@ -173,6 +173,31 @@ Next files will be update:|
 server/config/settings/installed_apps.py|To this file will be append string with name for new app.
 server/config/urls.py|To this file will be include urlpatterns from new app **server/apps/news/urls.py**.
 
+**DRF**
+
+If project created with **drf** option in app directory will be create more two empty packages:
+
+* serializers
+* viewsets
+
+To **urls.py** will be add next code:
+
+```python
+...
+
+from rest_framework import routers
+
+...
+
+################################################################
+# api urls
+################################################################
+
+router = routers.DefaultRouter()
+
+urlpatterns += patterns('', url(r'^api/', include(router.urls)))
+```
+
 ## Model
 
 Generator for creating django models. Create models for application and register
