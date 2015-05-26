@@ -24,6 +24,8 @@ $ yo bro <projectName> [options]
 
 **--dbPassword** password for database.
 
+**--drf** default false.
+
 **Example:**
 
 ```bash
@@ -73,6 +75,46 @@ server/config/urls.py | File contain root url conf for your apps. Sub generator 
 
 !!! danger "Do not remove file .yo-rc.json"
     If you remove this file then others sub generators will not work for you project.
+
+### DRF option
+
+If you run command with drf option, project will be create with next features.
+
+```txt
+# requirments.txt
+
+...
+djangorestframework==3.1
+...
+```
+
+```python
+# server/config/settings/settings.py
+
+...
+
+##################################################################
+# Django rest framework
+##################################################################
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+```
+
+```python
+# server/config/settings/installed_apps.py
+
+...
+
+INSTALLED_APPS = (
+    ...
+    'rest_framework',
+    ...
+)
+```
 
 ## Sub
 
