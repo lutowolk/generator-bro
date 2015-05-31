@@ -23,6 +23,27 @@
             ]
           },
           {
+            "name": "core",
+            "dirs": [
+              {
+                "name": "templates",
+                "files": [
+                  ["list_tag.html", "templates/list_tag.html"]
+                ]
+              },
+              {
+                "name": "templatetags",
+                "files": [
+                  ["__init__.py", "server/init.py"],
+                  ["core.py", "server/core.py"]
+                ]
+              }
+            ],
+            "files": [
+              ["__init__.py", "server/init.py"]
+            ]
+          },
+          {
             "name": "libs",
             "files": [
               ["__init__.py", "server/init.py"]
