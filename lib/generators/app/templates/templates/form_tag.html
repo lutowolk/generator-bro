@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form data-action="{% url url %}">
+    {{ form.as_p }}
+
+    <input type="submit"/>
+</form>
+{% endblock %}

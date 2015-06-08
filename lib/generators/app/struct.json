@@ -28,7 +28,8 @@
               {
                 "name": "templates",
                 "files": [
-                  ["list_tag.html", "templates/list_tag.html"]
+                  ["list_tag.html", "templates/list_tag.html"],
+                  ["form_tag.html", "templates/form_tag.html"]
                 ]
               },
               {
